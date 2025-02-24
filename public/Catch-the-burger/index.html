@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Burger!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f8c471;
+        }
+        h1 {
+            font-size: 2em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .burger {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Catch the Burger!</h1>
+    <img src="burger.png" alt="Burger" class="burger" id="burger">
+    
+    <script>
+        const burger = document.getElementById("burger");
+
+        function moveBurgerAway(event) {
+            let maxX = window.innerWidth - burger.clientWidth;
+            let maxY = window.innerHeight - burger.clientHeight;
+
+            let burgerRect = burger.getBoundingClientRect();
+            let dx = event.clientX - (burgerRect.left + burgerRect.width / 2);
+            let dy = event.clientY - (burgerRect.top + burgerRect.height / 2);
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+                // Random position within bounds
+                let newX = Math.random() * maxX;
+                let newY = Math.random() * maxY;
+
+                // Ensure burger stays within bounds
+                newX = Math.min(newX, maxX - burger.clientWidth);
+                newY = Math.min(newY, maxY - burger.clientHeight);
+
+                burger.style.left = `${newX}px`;
+                burger.style.top = `${newY}px`;
+            }
+        }
+
+        // Initialize burger's position
+        burger.style.position = 'absolute';
+
+        document.addEventListener("mousemove", moveBurgerAway);
+    </script>
+</body>
+</html>

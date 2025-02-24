@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Speed Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen">
+    <img id="logo" src="cursor.png" class="w-32 h-32 mb-4 fade-in" alt="Cursor Logo">
+    <div id="content" class="p-6 border border-red-500 rounded-lg text-center fade-in">
+        <p class="text-xl font-semibold">Timer: <span id="timer">0.000</span></p>
+        <p class="text-xl font-semibold">Score: <span id="score">0</span></p>
+        <p class="text-xl font-semibold">Clicks/s: <span id="clicks">0.00</span></p>
+    </div>
+    <div id="clickarea" class="w-96 h-64 mt-6 flex items-center justify-center border-2 border-red-500 rounded-lg cursor-pointer fade-in">
+        <button id="start" class="px-6 py-3 text-lg font-bold text-white bg-red-600 rounded-lg shadow-lg transform transition duration-300 hover:bg-red-700 active:scale-90">
+            Start
+        </button>
+    </div>
+    <script>
+        let score = 0;
+        let duration = 10;
+        let startTime;
+        let ended = true;
+        let timerTxt = document.getElementById("timer");
+        let scoreTxt = document.getElementById("score");
+        let clicksTxt = document.getElementById("clicks");
+        let startBtn = document.getElementById("start");
+        let clickArea = document.getElementById("clickarea");
+
+        function show(elem) { elem.classList.remove("hidden"); }
+        function hide(elem) { elem.classList.add("hidden"); }
+
+        function startGame() {
+            hide(startBtn);
+            score = 0;
+            ended = false;
+            startTime = new Date().getTime();
+            scoreTxt.textContent = "0";
+            clicksTxt.textContent = "0.00";
+            
+            let timerId = setInterval(() => {
+                let total = (new Date().getTime() - startTime) / 1000;
+                if (total < duration) {
+                    timerTxt.textContent = total.toFixed(3);
+                    clicksTxt.textContent = (score / total).toFixed(2);
+                } else {
+                    ended = true;
+                    clearInterval(timerId);
+                    endGame();
+                }
+            }, 10);
+        }
+
+        function endGame() {
+            let clicksPerSecond = (score / duration).toFixed(2);
+            timerTxt.textContent = duration.toFixed(3);
+            clicksTxt.textContent = clicksPerSecond;
+            show(startBtn);
+            
+            setTimeout(() => {
+                alert(`Game Over!\nYour Score: ${score}\nClicks per second: ${clicksPerSecond}`);
+            }, 100);
+        }
+
+        startBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            startGame();
+        });
+
+        clickArea.addEventListener("click", function () {
+            if (!ended) {
+                score++;
+                scoreTxt.textContent = score;
+            }
+        });
+    </script>
+</body>
+</html>
