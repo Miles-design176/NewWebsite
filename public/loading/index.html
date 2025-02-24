@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading...</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #loading-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #progress {
+            width: 300px;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #bar {
+            width: 0%;
+            height: 100%;
+            background: #4CAF50;
+            transition: width 0.5s ease;
+        }
+        #percentage {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-text">Loading...</div>
+    <div id="progress">
+        <div id="bar"></div>
+    </div>
+    <div id="percentage">0%</div>
+
+    <script>
+        const loadingTexts = [
+            "Downloading more RAM...",
+            "Calculating the meaning of life...",
+            "Teaching AI to feel emotions...",
+            "Counting to infinity...",
+            "Dividing by zero...",
+            "Downloading the internet...",
+            "Finding the end of pi...",
+            "Generating random numbers by fair dice roll...",
+            "Converting caffeine to code...",
+            "Solving P vs NP...",
+            "Discovering new elements...",
+            "Proving string theory...",
+            "Breaking the space-time continuum...",
+            "Charging flux capacitor...",
+            "Searching for intelligent life..."
+        ];
+
+        const loadingText = document.getElementById('loading-text');
+        const bar = document.getElementById('bar');
+        const percentage = document.getElementById('percentage');
+        let progress = 0;
+        let textIndex = 0;
+
+        function updateLoading() {
+            progress += Math.random() * 2;
+            if (progress >= 99) {
+                progress = Math.min(99.9, progress);
+            }
+            
+            bar.style.width = progress + '%';
+            percentage.textContent = Math.floor(progress) + '%';
+            
+            if (Math.random() < 0.1) {
+                textIndex = (textIndex + 1) % loadingTexts.length;
+                loadingText.textContent = loadingTexts[textIndex];
+            }
+
+            setTimeout(updateLoading, Math.random() * 1000 + 500);
+        }
+
+        updateLoading();
+    </script>
+</body>
+</html>
