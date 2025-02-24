@@ -4,37 +4,37 @@ const InfoPage = () => {
       title: "Chess",
       description: "A classic game of strategy and skill, reimagined for the web. Challenge your mind with one of the world's oldest and most beloved board games.",
       imageUrl: "https://www.chesshouse.com/cdn/shop/files/16-folding-tournament-wood-chess-set-no-4-with-german-acacia-3-pieces-32317519593559_grande.jpg?v=1726262035",
-      link: "bestwebsite.ca/chess"
+      link: "/chess"
     },
     {
       title: "Cookie Clicker",
       description: "The addictively simple game where every click counts. Bake virtual cookies and build your cookie empire with upgrades and achievements.",
       imageUrl: "https://www.shutterstock.com/image-photo/detailed-image-single-chocolate-chip-600nw-2466892859.jpg",
-      link: "bestwebsite.ca/cookie-clicker"
+      link: "/cookieclicker"
     },
     {
       title: "Catch the Burger",
       description: "Test your reflexes in this fast-paced game. Catch falling burgers while avoiding obstacles in this deliciously entertaining challenge.",
       imageUrl: "https://www.shutterstock.com/image-photo/classic-hamburger-stock-photo-isolated-600nw-2282033179.jpg",
-      link: "bestwebsite.ca/catch-the-burger"
+      link: "/catch-the-burger"
     },
     {
       title: "DVD",
       description: "Watch the DVD logo bounce around your screen, waiting for that perfect corner hit. A nostalgic tribute to the classic DVD player screensaver.",
       imageUrl: "https://i.pinimg.com/originals/9b/aa/d7/9baad739910e7144a7ae561c73f6aecc.jpg",
-      link: "bestwebsite.ca/dvd"
+      link: "/dvd"
     },
     {
       title: "Something",
       description: "A mysterious project that could be anything. Click to discover what lies behind this intriguing title.",
       imageUrl: "https://static.vecteezy.com/system/resources/thumbnails/008/885/679/small_2x/3d-illustration-of-messages-in-the-form-of-a-question-mark-on-a-black-background-illustration-of-a-question-uncertainty-symbol-of-negotiation-and-uncertainty-photo.jpg",
-      link: "bestwebsite.ca/something"
+      link: "/something"
     },
     {
       title: "CPS Tester",
       description: "Measure your clicking speed and precision. Find out how many clicks per second you can achieve in this performance testing tool.",
       imageUrl: "https://www.shutterstock.com/image-photo/old-mouse-on-white-background-600nw-2132548831.jpg",
-      link: "bestwebsite.ca/cps-tester"
+      link: "/cpstester"
     }
   ];
 
