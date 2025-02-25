@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #fafafa;
+      color: #1a1a1b;
+      padding: 20px;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+    
+    .title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2rem;
+      margin-bottom: 10px;
+      color: #1a1a1b;
+      text-transform: uppercase;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+      color: #787c7e;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 350px;
+      background-color: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .board {
+      display: grid;
+      grid-template-rows: repeat(6, 1fr);
+      grid-gap: 6px;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+    
+    .row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 6px;
+      width: 100%;
+    }
+    
+    .tile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      aspect-ratio: 1;
+      border: 2px solid #d3d6da;
+      border-radius: 4px;
+      font-size: 2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    
+    .correct {
+      background-color: #6aaa64;
+      color: white;
+      border-color: #6aaa64;
+      transform: rotateX(360deg);
+      transition: transform 0.6s;
+    }
+    
+    .present {
+      background-color: #c9b458;
+      color: white;
+      border-color: #c9b458;
+      transform: rotateX(360deg);
+      transition: transform 0.6s;
+    }
+    
+    .absent {
+      background-color: #787c7e;
+      color: white;
+      border-color: #787c7e;
+      transform: rotateX(360deg);
+      transition: transform 0.6s;
+    }
+    
+    .message {
+      margin: 16px 0;
+      font-weight: bold;
+      min-height: 28px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #1a1a1b;
+    }
+    
+    .status {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 1rem;
+      color: #787c7e;
+      font-weight: 500;
+    }
+    
+    .instructions {
+      margin-top: 30px;
+      text-align: center;
+      max-width: 400px;
+      padding: 24px;
+      font-size: 1rem;
+      line-height: 1.5;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .instructions p {
+      margin-bottom: 12px;
+    }
+    
+    .instructions p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .color-example {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    
+    .example-tile {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    
+    .example-text {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    
+    .button {
+      background-color: #6aaa64;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 15px;
+      transition: background-color 0.2s;
+    }
+    
+    .button:hover {
+      background-color: #5c9658;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+    
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    
+    .modal-text {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .mode-indicator {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background-color: #e6e6e6;
+      color: #1a1a1b;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Word Guesser</div>
+    <div class="subtitle">
+      <span id="mode-text">Daily Challenge</span>
+      <span class="mode-indicator" id="mode-indicator">DAILY</span>
+    </div>
+    <div class="game-container">
+      <div class="board" id="board"></div>
+      <div class="message" id="message"></div>
+      <div class="status" id="status"></div>
+    </div>
+    
+    <div class="instructions">
+      <p>Guess the WORD in 6 tries.</p>
+      <p>Each guess must be a valid 5-letter word. Use your keyboard and press enter to submit.</p>
+      <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+      
+      <div class="color-example">
+        <div class="example-text">
+          <span class="example-tile" style="background-color: #6aaa64;"></span>
+          Correct
+        </div>
+        <div class="example-text">
+          <span class="example-tile" style="background-color: #c9b458;"></span>
+          Present
+        </div>
+        <div class="example-text">
+          <span class="example-tile" style="background-color: #787c7e;"></span>
+          Absent
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal" id="win-modal">
+    <div class="modal-content">
+      <div class="modal-title">Congratulations!</div>
+      <div class="modal-text">
+        You've completed today's daily word!
+        Would you like to continue playing with random words?
+      </div>
+      <button class="button" id="continue-button">Continue with Random Words</button>
+    </div>
+  </div>
+
+  <script>
+    const words = [
+    "ABOUT", "ALERT", "ARGUE", "BEACH",
+    "ABOVE", "ALIKE", "ARISE", "BEGAN",
+    "ABUSE", "ALIVE", "ARRAY", "BEGIN",
+    "ACTOR", "ALLOW", "ASIDE", "BEGUN",
+    "ACUTE", "ALONE", "ASSET", "BEING",
+    "ADMIT", "ALONG", "AUDIO", "BELOW",
+    "ADOPT", "ALTER", "AUDIT", "BENCH",
+    "ADULT", "AMONG", "AVOID", "BILLY",
+    "AFTER", "ANGER", "AWARD", "BIRTH",
+    "AGAIN", "ANGLE", "AWARE", "BLACK",
+    "AGENT", "ANGRY", "BADLY", "BLAME",
+    "AGREE", "APART", "BAKER", "BLIND",
+    "AHEAD", "APPLE", "BASES", "BLOCK",
+    "ALARM", "APPLY", "BASIC", "BLOOD",
+    "ALBUM", "ARENA", "BASIS", "BOARD",
+    "BOOST", "BUYER", "CHINA", "COVER",
+    "BOOTH", "CABLE", "CHOSE", "CRAFT",
+    "BOUND", "CALIF", "CIVIL", "CRASH",
+    "BRAIN", "CARRY", "CLAIM", "CREAM",
+    "BRAND", "CATCH", "CLASS", "CRIME",
+    "BREAD", "CAUSE", "CLEAN", "CROSS",
+    "BREAK", "CHAIN", "CLEAR", "CROWD",
+    "BREED", "CHAIR", "CLICK", "CROWN",
+    "BRIEF", "CHART", "CLOCK", "CURVE",
+    "BRING", "CHASE", "CLOSE", "CYCLE",
+    "BROAD", "CHEAP", "COACH", "DAILY",
+    "BROKE", "CHECK", "COAST", "DANCE",
+    "BROWN", "CHEST", "COULD", "DATED",
+    "BUILD", "CHIEF", "COUNT", "DEALT",
+    "BUILT", "CHILD", "COURT", "DEATH",
+    "DEBUT", "ENTRY", "FORTH", "GROUP",
+    "DELAY", "EQUAL", "FORTY", "GROWN",
+    "DEPTH", "ERROR", "FORUM", "GUARD",
+    "DOING", "EVENT", "FOUND", "GUESS",
+    "DOUBT", "EVERY", "FRAME", "GUEST",
+    "DOZEN", "EXACT", "FRANK", "GUIDE",
+    "DRAFT", "EXIST", "FRAUD", "HAPPY",
+    "DRAMA", "EXTRA", "FRESH", "HARRY",
+    "DRAWN", "FAITH", "FRONT", "HEART",
+    "DREAM", "FALSE", "FRUIT", "HEAVY",
+    "DRESS", "FAULT", "FULLY", "HENCE",
+    "DRILL", "FIBRE", "FUNNY", "NIGHT",
+    "DRINK", "FIELD", "GIANT", "HORSE",
+    "DRIVE", "FIFTH", "GIVEN", "HOTEL",
+    "DROVE", "FIFTY", "GLASS", "HOUSE",
+    "DYING", "FIGHT", "GLOBE", "HUMAN",
+    "EAGER", "FINAL", "GOING", "IDEAL",
+    "EARLY", "FIRST", "GRACE", "IMAGE",
+    "EARTH", "FIXED", "GRADE", "INDEX",
+    "EIGHT", "FLASH", "GRAND", "INNER",
+    "ELITE", "FLEET", "GRANT", "INPUT",
+    "EMPTY", "FLOOR", "GRASS", "ISSUE",
+    "ENEMY", "FLUID", "GREAT", "IRONY",
+    "ENJOY", "FOCUS", "GREEN", "JUICE",
+    "ENTER", "FORCE", "GROSS", "JOINT",
+    "JUDGE", "METAL", "MEDIA", "NEWLY",
+    "KNOWN", "LOCAL", "MIGHT", "NOISE",
+    "LABEL", "LOGIC", "MINOR", "NORTH",
+    "LARGE", "LOOSE", "MINUS", "NOTED",
+    "LASER", "LOWER", "MIXED", "NOVEL",
+    "LATER", "LUCKY", "MODEL", "NURSE",
+    "LAUGH", "LUNCH", "MONEY", "OCCUR",
+    "LAYER", "LYING", "MONTH", "OCEAN",
+    "LEARN", "MAGIC", "MORAL", "OFFER",
+    "LEASE", "MAJOR", "MOTOR", "OFTEN",
+    "LEAST", "MAKER", "MOUNT", "ORDER",
+    "LEAVE", "MARCH", "MOUSE", "OTHER",
+    "LEGAL", "MUSIC", "MOUTH", "OUGHT",
+    "LEVEL", "MATCH", "MOVIE", "PAINT",
+    "LIGHT", "MAYOR", "NEEDS", "PAPER",
+    "LIMIT", "MEANT", "NEVER", "PARTY",
+    "PEACE", "POWER", "RADIO", "ROUND",
+    "PANEL", "PRESS", "RAISE", "ROUTE",
+    "PHASE", "PRICE", "RANGE", "ROYAL",
+    "PHONE", "PRIDE", "RAPID", "RURAL",
+    "PHOTO", "PRIME", "RATIO", "SCALE",
+    "PIECE", "PRINT", "REACH", "SCENE",
+    "PILOT", "PRIOR", "READY", "SCOPE",
+    "PITCH", "PRIZE", "REFER", "SCORE",
+    "PLACE", "PROOF", "RIGHT", "SENSE",
+    "PLAIN", "PROUD", "RIVAL", "SERVE",
+    "PLANE", "PROVE", "RIVER", "SEVEN",
+    "PLANT", "QUEEN", "QUICK", "SHALL",
+    "PLATE", "SIXTH", "STAND", "SHAPE",
+    "POINT", "QUIET", "ROMAN", "SHARE",
+    "POUND", "QUITE", "ROUGH", "SHARP",
+    "SHEET", "SPARE", "STYLE", "TIMES",
+    "SHELF", "SPEAK", "SUGAR", "TIRED",
+    "SHELL", "SPEED", "SUITE", "TITLE",
+    "SHIFT", "SPEND", "SUPER", "TODAY",
+    "SHIRT", "SPENT", "SWEET", "TOPIC",
+    "SHOCK", "SPLIT", "TABLE", "TOTAL",
+    "SHOOT", "SPOKE", "TAKEN", "TOUCH",
+    "SHORT", "SPORT", "TASTE", "TOUGH",
+    "SHOWN", "STAFF", "TAXES", "TOWER",
+    "SIGHT", "STAGE", "TEACH", "TRACK",
+    "SINCE", "STAKE", "TEETH", "TRADE",
+    "SIXTY", "START", "TEXAS", "TREAT",
+    "SIZED", "STATE", "THANK", "TREND",
+    "SKILL", "STEAM", "THEFT", "TRIAL",
+    "SLEEP", "STEEL", "THEIR", "TRIED",
+    "SLIDE", "STICK", "THEME", "TRIES",
+    "SMALL", "STILL", "THERE", "TRUCK",
+    "SMART", "STOCK", "THESE", "TRULY",
+    "SMILE", "STONE", "THICK", "TRUST",
+    "SMITH", "STOOD", "THING", "TRUTH",
+    "SMOKE", "STORE", "THINK", "TWICE",
+    "SOLID", "STORM", "THIRD", "UNDER",
+    "SOLVE", "STORY", "THOSE", "UNDUE",
+    "SORRY", "STRIP", "THREE", "UNION",
+    "SOUND", "STUCK", "THREW", "UNITY",
+    "SOUTH", "STUDY", "THROW", "UNTIL",
+    "SPACE", "STUFF", "TIGHT", "UPPER",
+    "UPSET", "WHOLE", "WASTE", "WOUND",
+    "URBAN", "WHOSE", "WATCH", "WRITE",
+    "USAGE", "WOMAN", "WATER", "WRONG",
+    "USUAL", "TRAIN", "WHEEL", "WROTE",
+    "VALID", "WORLD", "WHERE", "YIELD",
+    "VALUE", "WORRY", "WHICH", "YOUNG",
+    "VIDEO", "WORSE", "WHILE", "YOUTH",
+    "VIRUS", "WORST", "WHITE", "WORTH",
+    "VISIT", "WOULD", "VITAL", "VOICE"
+];
+
+    // Game mode
+    let isDaily = true;
+    let dailyWordIndex = getDailyWordIndex();
+    let randomWordIndex = Math.floor(Math.random() * words.length);
+    let dailyCompleted = false;
+    
+    // Initialize the game
+    let targetWord = isDaily ? words[dailyWordIndex] : words[randomWordIndex];
+    let currentRow = 0;
+    let currentTile = 0;
+    let gameOver = false;
+
+    // Generate a consistent daily word based on the date
+    function getDailyWordIndex() {
+      const today = new Date();
+      const dateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+      
+      // Simple hash function to convert date to a number
+      let hash = 0;
+      for (let i = 0; i < dateString.length; i++) {
+        hash = ((hash << 5) - hash) + dateString.charCodeAt(i);
+        hash = hash & hash; // Convert to 32bit integer
+      }
+      
+      // Make sure it's positive and within range of our word list
+      hash = Math.abs(hash) % words.length;
+      return hash;
+    }
+
+    // Reset the game with a new target word (random mode)
+    function resetGameRandom() {
+      // Hide modal
+      document.getElementById('win-modal').style.display = 'none';
+      
+      // Switch to random mode
+      isDaily = false;
+      randomWordIndex = Math.floor(Math.random() * words.length);
+      targetWord = words[randomWordIndex];
+      
+      // Update UI
+      document.getElementById('mode-text').textContent = 'Random Mode';
+      document.getElementById('mode-indicator').textContent = 'RANDOM';
+      document.getElementById('mode-indicator').style.backgroundColor = '#c9b458';
+      
+      // Clear the board
+      const boardElement = document.getElementById('board');
+      boardElement.innerHTML = '';
+      createBoard();
+      
+      // Reset game state
+      currentRow = 0;
+      currentTile = 0;
+      gameOver = false;
+      
+      // Update status
+      updateStatus();
+    }
+
+    // Create the board
+    function createBoard() {
+      const boardElement = document.getElementById('board');
+      for (let r = 0; r < 6; r++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        for (let c = 0; c < 5; c++) {
+          const tile = document.createElement('div');
+          tile.className = 'tile';
+          tile.id = `tile-${r}-${c}`;
+          row.appendChild(tile);
+        }
+        boardElement.appendChild(row);
+      }
+    }
+
+    // Add a letter to the current tile
+    function addLetter(letter) {
+      if (currentTile < 5 && currentRow < 6 && !gameOver) {
+        const tile = document.getElementById(`tile-${currentRow}-${currentTile}`);
+        tile.textContent = letter.toUpperCase();
+        tile.dataset.letter = letter.toUpperCase();
+        currentTile++;
+        updateStatus();
+      }
+    }
+
+    // Delete a letter from the current tile
+    function deleteLetter() {
+      if (currentTile > 0 && !gameOver) {
+        currentTile--;
+        const tile = document.getElementById(`tile-${currentRow}-${currentTile}`);
+        tile.textContent = '';
+        delete tile.dataset.letter;
+        updateStatus();
+      }
+    }
+
+    function getCurrentWord() {
+      let word = '';
+      for (let c = 0; c < 5; c++) {
+        const tile = document.getElementById(`tile-${currentRow}-${c}`);
+        word += tile.dataset.letter || '';
+      }
+      return word;
+    }
+
+    function isWordValid(word) {
+      return word.length === 5 && words.includes(word);
+    }
+
+    function showMessage(msg) {
+      const messageElement = document.getElementById('message');
+      messageElement.textContent = msg;
+      setTimeout(() => {
+        messageElement.textContent = '';
+      }, 3000);
+    }
+
+    function updateStatus() {
+      const statusElement = document.getElementById('status');
+      statusElement.textContent = `Row ${currentRow + 1}/6 • Letter ${currentTile}/5`;
+    }
+
+    function checkRow() {
+      const word = getCurrentWord();
+      
+      if (word.length !== 5) {
+        showMessage('Not enough letters');
+        return;
+      }
+      
+      if (!isWordValid(word)) {
+        showMessage('Not in word list');
+        return;
+      }
+
+      // Count letter occurrences in the target word
+      const letterCount = {};
+      for (const letter of targetWord) {
+        letterCount[letter] = (letterCount[letter] || 0) + 1;
+      }
+
+      // First pass: Mark correct positions
+      const states = Array(5).fill(null);
+      for (let c = 0; c < 5; c++) {
+        const tile = document.getElementById(`tile-${currentRow}-${c}`);
+        const letter = tile.dataset.letter;
+        
+        if (letter === targetWord[c]) {
+          states[c] = 'correct';
+          letterCount[letter]--;
+        }
+      }
+
+      // Second pass: Mark present or absent
+      for (let c = 0; c < 5; c++) {
+        if (states[c]) continue; // Skip already marked correct
+        
+        const tile = document.getElementById(`tile-${currentRow}-${c}`);
+        const letter = tile.dataset.letter;
+        
+        if (targetWord.includes(letter) && letterCount[letter] > 0) {
+          states[c] = 'present';
+          letterCount[letter]--;
+        } else {
+          states[c] = 'absent';
+        }
+      }
+
+      // Apply the animations with delay
+      for (let c = 0; c < 5; c++) {
+        const tile = document.getElementById(`tile-${currentRow}-${c}`);
+        setTimeout(() => {
+          tile.classList.add(states[c]);
+        }, c * 250);
+      }
+
+      // Check if the game is won
+      if (word === targetWord) {
+        setTimeout(() => {
+          if (isDaily && !dailyCompleted) {
+            dailyCompleted = true;
+            document.getElementById('win-modal').style.display = 'flex';
+          } else {
+            showMessage('You won! Great job!');
+          }
+          gameOver = true;
+          document.getElementById('status').textContent = 'Game Complete!';
+        }, 1500);
+      } else if (currentRow === 5) {
+        setTimeout(() => {
+          showMessage(`Game over! The word was ${targetWord}`);
+          gameOver = true;
+          document.getElementById('status').textContent = 'Game Complete!';
+        }, 1500);
+      } else {
+        currentRow++;
+        currentTile = 0;
+        updateStatus();
+      }
+    }
+
+    // Event listener for keyboard input
+    document.addEventListener('keydown', (e) => {
+      if (gameOver && !document.getElementById('win-modal').style.display === 'flex') return;
+
+      if (e.key === 'Enter') {
+        checkRow();
+      } else if (e.key === 'Backspace') {
+        deleteLetter();
+      } else if (/^[a-zA-Z]$/.test(e.key)) {
+        addLetter(e.key);
+      }
+    });
+
+    // Event listener for continue button
+    document.getElementById('continue-button').addEventListener('click', resetGameRandom);
+
+    // Initialize the game
+    createBoard();
+    updateStatus();
+  </script>
+</body>
+</html>

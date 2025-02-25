@@ -7,16 +7,10 @@ const InfoPage = () => {
       link: "/chess/"
     },
     {
-      title: "Cookie Clicker",
-      description: "The addictively simple game where every click counts. Bake virtual cookies and build your cookie empire with upgrades and achievements.",
-      imageUrl: "https://www.shutterstock.com/image-photo/detailed-image-single-chocolate-chip-600nw-2466892859.jpg",
-      link: "/cookieclicker/"
-    },
-    {
-      title: "Catch the Burger",
-      description: "Test your reflexes in this fast-paced game. Catch falling burgers while avoiding obstacles in this deliciously entertaining challenge.",
-      imageUrl: "https://www.shutterstock.com/image-photo/classic-hamburger-stock-photo-isolated-600nw-2282033179.jpg",
-      link: "/Catch-the-burger/"
+      title: "Word Guesser",
+      description: "Challenge your word skills with Word Guesser! Guess the daily word or try random words. A fun, fast-paced game with unique animations and interactive gameplay. Are you up for the challenge?",
+      imageUrl: "https://thesportscentral.com/wp-content/uploads/2025/01/DALL%C2%B7E-2025-01-18-19.05.57-An-artistic-representation-of-a-Wordle-like-game-grid.-The-grid-has-black-squares-with-white-letters-some-tiles-highlighted-in-green-to-indicate-corr-600x400.webp",
+      link: "/WordGuesser/"
     },
     {
       title: "DVD",
@@ -35,6 +29,18 @@ const InfoPage = () => {
       description: "Measure your clicking speed and precision. Find out how many clicks per second you can achieve in this performance testing tool.",
       imageUrl: "https://www.shutterstock.com/image-photo/old-mouse-on-white-background-600nw-2132548831.jpg",
       link: "/cpstester/"
+    },
+    {
+      title: "Pong",
+      description: "Pong is a classic arcade game where players control paddles to bounce a ball back and forth, aiming to score points by getting the ball past their opponent. With simple mechanics and retro graphics, it’s a fun test of reflexes and hand-eye coordination.",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTPgntVgjQAGj5zNWwN0wxWuq1DZ_0h2FL0w&s",
+      link: "/Pong/"
+    },
+    {
+      title: "Tetris",
+      description: "Tetris is a timeless puzzle game where players rotate and arrange falling tetrominoes to create complete lines without gaps. As lines disappear, the game speeds up, challenging players to think quickly and strategically to achieve high scores.",
+      imageUrl: "https://nationalcioreview.com/wp-content/uploads/2024/05/Tech-Time-Travel-2.png",
+      link: "/Pong/"
     }
   ];
 
