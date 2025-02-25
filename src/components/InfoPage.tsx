@@ -40,7 +40,7 @@ const InfoPage = () => {
       title: "Tetris",
       description: "Tetris is a timeless puzzle game where players rotate and arrange falling tetrominoes to create complete lines without gaps. As lines disappear, the game speeds up, challenging players to think quickly and strategically to achieve high scores.",
       imageUrl: "https://nationalcioreview.com/wp-content/uploads/2024/05/Tech-Time-Travel-2.png",
-      link: "/Pong/"
+      link: "/Tetris/"
     }
   ];
 
