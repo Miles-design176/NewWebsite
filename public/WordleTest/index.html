@@ -10,6 +10,18 @@
       padding: 0;
     }
 
+    #hidden-input {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 40px;
+      opacity: 0;
+      z-index: 100;
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+
     body {
       font-family: 'Helvetica Neue', Arial, sans-serif;
       display: flex;
@@ -251,6 +263,7 @@
       font-weight: bold;
       cursor: pointer;
       font-size: 1rem;
+      margin-top: 15px;
       transition: background-color 0.2s;
     }
 
@@ -290,9 +303,11 @@
       <div class="status" id="status"></div>
     </div>
 
+    <input type="text" id="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
+
     <div class="instructions">
       <p>Guess the WORD in 6 tries.</p>
-      <p>Each guess must be a valid 5-letter word. Type your guess and press enter to submit.</p>
+      <p>Each guess must be a valid 5-letter word. Use your phone's keyboard to type and press enter to submit.</p>
       <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
 
       <div class="color-example">
@@ -328,8 +343,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    // Words array remains the same
-    const words = ["REACT"];
+    // Include a subset of words for the standalone version
+    const words = ["ABOUT"];
 
     let currentRow = 0;
     let currentTile = 0;
@@ -337,9 +352,9 @@
     let dailyMode = true;
     let word = '';
 
-    // Initialize the game board
     function initializeBoard() {
       const board = document.getElementById('board');
+      board.innerHTML = '';
       for (let i = 0; i < 6; i++) {
         const row = document.createElement('div');
         row.className = 'row';
@@ -351,45 +366,49 @@
         board.appendChild(row);
       }
       updateActiveTile();
+      focusInput();
     }
 
-    // Update the active tile indicator
+    function focusInput() {
+      const hiddenInput = document.getElementById('hidden-input');
+      hiddenInput.focus();
+      // Scroll to prevent visual keyboard from covering the game board
+      window.scrollTo(0, 0);
+    }
+
     function updateActiveTile() {
       const tiles = document.querySelectorAll('.tile');
       tiles.forEach(tile => tile.classList.remove('active'));
-      if (!gameOver && currentTile < 5) {
-        const activeTile = document.querySelector(`.row:nth-child(${currentRow + 1}) .tile:nth-child(${currentTile + 1})`);
-        if (activeTile) activeTile.classList.add('active');
+      if (currentRow < 6 && currentTile < 5) {
+        tiles[currentRow * 5 + currentTile].classList.add('active');
       }
     }
 
-    // Handle keyboard input
     function handleKeyPress(key) {
       if (gameOver) return;
 
-      if (key === 'Enter') {
-        if (currentTile === 5) submitGuess();
-      } else if (key === 'Backspace') {
-        if (currentTile > 0) {
-          currentTile--;
-          const tile = document.querySelector(`.row:nth-child(${currentRow + 1}) .tile:nth-child(${currentTile + 1})`);
-          tile.textContent = '';
+      if (/^[A-Za-z]$/.test(key)) {
+        if (currentTile < 5) {
+          const tiles = document.querySelectorAll('.tile');
+          tiles[currentRow * 5 + currentTile].textContent = key.toUpperCase();
+          currentTile++;
           updateActiveTile();
         }
-      } else if (/^[A-Za-z]$/.test(key) && currentTile < 5) {
-        const tile = document.querySelector(`.row:nth-child(${currentRow + 1}) .tile:nth-child(${currentTile + 1})`);
-        tile.textContent = key.toUpperCase();
-        currentTile++;
+      } else if (key === 'Backspace' && currentTile > 0) {
+        currentTile--;
+        const tiles = document.querySelectorAll('.tile');
+        tiles[currentRow * 5 + currentTile].textContent = '';
         updateActiveTile();
+      } else if (key === 'Enter' && currentTile === 5) {
+        submitGuess();
       }
     }
 
-    // Submit guess
     function submitGuess() {
       const row = document.querySelector(`.row:nth-child(${currentRow + 1})`);
       const tiles = row.querySelectorAll('.tile');
       const guess = Array.from(tiles).map(tile => tile.textContent).join('');
-      
+
       if (!words.includes(guess)) {
         showMessage('Not in word list');
         return;
@@ -398,14 +417,16 @@
       const result = checkGuess(guess);
       animateResult(result, tiles);
 
-      if (guess === word) {
+      if (result.every(r => r === 'correct')) {
         gameOver = true;
-        showWinModal();
         confetti({
           particleCount: 100,
           spread: 70,
           origin: { y: 0.6 }
         });
+        setTimeout(() => {
+          showWinModal();
+        }, 1500);
       } else if (currentRow === 5) {
         gameOver = true;
         showMessage(`Game Over! The word was ${word}`);
@@ -416,17 +437,14 @@
       }
     }
 
-    // Check guess against the word
     function checkGuess(guess) {
       const result = Array(5).fill('absent');
       const letterCount = {};
-      
-      // Count letters in the word
+
       for (let letter of word) {
         letterCount[letter] = (letterCount[letter] || 0) + 1;
       }
 
-      // Check for correct positions first
       for (let i = 0; i < 5; i++) {
         if (guess[i] === word[i]) {
           result[i] = 'correct';
@@ -434,7 +452,6 @@
         }
       }
 
-      // Check for present letters
       for (let i = 0; i < 5; i++) {
         if (result[i] !== 'correct' && letterCount[guess[i]] > 0) {
           result[i] = 'present';
@@ -445,7 +462,6 @@
       return result;
     }
 
-    // Animate the result
     function animateResult(result, tiles) {
       tiles.forEach((tile, index) => {
         setTimeout(() => {
@@ -454,7 +470,6 @@
       });
     }
 
-    // Show message
     function showMessage(text) {
       const message = document.getElementById('message');
       message.textContent = text;
@@ -463,7 +478,6 @@
       }, 2000);
     }
 
-    // Show win modal
     function showWinModal() {
       const modal = document.getElementById('win-modal');
       const winMessage = document.getElementById('win-message');
@@ -471,11 +485,11 @@
       const playAgainButton = document.getElementById('play-again-button');
 
       if (dailyMode) {
-        winMessage.textContent = "You've completed today's daily word! Would you like to continue playing with random words?";
+        winMessage.textContent = "Congratulations! You've completed today's daily word! Would you like to continue playing with random words?";
         continueButton.style.display = 'block';
         playAgainButton.style.display = 'none';
       } else {
-        winMessage.textContent = 'Congratulations! You found the word!';
+        winMessage.textContent = "Congratulations! You found the word!";
         continueButton.style.display = 'none';
         playAgainButton.style.display = 'block';
       }
@@ -483,60 +497,82 @@
       modal.style.display = 'flex';
     }
 
-    // Get random word
     function getRandomWord() {
       return words[Math.floor(Math.random() * words.length)];
     }
 
-    // Reset game
     function resetGame() {
-      const board = document.getElementById('board');
-      board.innerHTML = '';
       currentRow = 0;
       currentTile = 0;
       gameOver = false;
-      word = getRandomWord();
+      word = dailyMode ? getDailyWord() : getRandomWord();
       initializeBoard();
     }
 
-    // Event listeners
-    document.addEventListener('keydown', (e) => {
-      handleKeyPress(e.key);
+    function getDailyWord() {
+      const date = new Date();
+      const seed = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
+      const dailyIndex = seed % words.length;
+      return words[dailyIndex];
+    }
+
+    document.addEventListener('click', focusInput);
+
+    // Ensure input is focused on touch events
+    document.addEventListener('touchstart', (e) => {
+      focusInput();
+    });
+
+    // Prevent default zoom behavior on double tap
+    document.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+    });
+
+    const hiddenInput = document.getElementById('hidden-input');
+
+    // Handle input events for mobile keyboards
+    hiddenInput.addEventListener('input', (e) => {
+      const value = e.target.value.toUpperCase();
+      if (value && /^[A-Z]$/.test(value)) {
+        handleKeyPress(value);
+      }
+      hiddenInput.value = ''; // Clear input after handling
+    });
+
+    // Handle special keys (backspace and enter)
+    hiddenInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === 'Backspace') {
+        e.preventDefault();
+        handleKeyPress(e.key);
+      }
     });
 
     document.getElementById('continue-button').addEventListener('click', () => {
       dailyMode = false;
-      document.getElementById('win-modal').style.display = 'none';
-      document.getElementById('mode-text').textContent = 'Random Word';
+      document.getElementById('mode-text').textContent = 'Random Words';
       document.getElementById('mode-indicator').textContent = 'RANDOM';
+      const modal = document.getElementById('win-modal');
+      modal.style.display = 'none';
       resetGame();
     });
 
     document.getElementById('play-again-button').addEventListener('click', () => {
-      document.getElementById('win-modal').style.display = 'none';
+      const modal = document.getElementById('win-modal');
+      modal.style.display = 'none';
       resetGame();
     });
 
     document.getElementById('mode-indicator').addEventListener('click', () => {
       if (!gameOver) {
         dailyMode = !dailyMode;
-        document.getElementById('mode-text').textContent = dailyMode ? 'Daily Challenge' : 'Random Word';
+        document.getElementById('mode-text').textContent = dailyMode ? 'Daily Challenge' : 'Random Words';
         document.getElementById('mode-indicator').textContent = dailyMode ? 'DAILY' : 'RANDOM';
         resetGame();
       }
     });
 
-    // Initialize game
-    function initializeGame() {
-      const date = new Date();
-      const seed = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
-      const dailyIndex = seed % words.length;
-      word = dailyMode ? words[dailyIndex] : getRandomWord();
-      initializeBoard();
-    }
-
-    // Start the game
-    initializeGame();
+    word = dailyMode ? getDailyWord() : getRandomWord();
+    initializeBoard();
   </script>
 </body>
 </html>
