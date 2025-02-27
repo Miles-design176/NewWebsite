@@ -2,3 +2,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #fafafa;
+  }
+  
+  /* Mobile-specific styles */
+  @media (max-width: 767px) {
+    html {
+      font-size: 14px;
+    }
+    
+    .app {
+      padding: 8px;
+    }
+  }
+  
+  /* Animation for card flipping */
+  .card-flip {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .card-flip.flipped {
+    transform: rotateY(180deg);
+  }

@@ -10,7 +10,13 @@ const InfoPage = () => {
       title: "Word Guesser",
       description: "Challenge your word skills with Word Guesser! Guess the daily word or try random words. A fun, fast-paced game with unique animations and interactive gameplay. Are you up for the challenge?",
       imageUrl: "https://thesportscentral.com/wp-content/uploads/2025/01/DALL%C2%B7E-2025-01-18-19.05.57-An-artistic-representation-of-a-Wordle-like-game-grid.-The-grid-has-black-squares-with-white-letters-some-tiles-highlighted-in-green-to-indicate-corr-600x400.webp",
-      link: "/WordGuesser/"
+      link: "/Wordit/"
+    },
+    {
+      title: "Notes",
+      description: "Comprehensive notes covering key concepts in Biology and Chemistry, formatted for easy review and study.",
+      imageUrl: "https://www.shutterstock.com/image-photo/spiral-dna-double-helix-structure-600nw-2476718469.jpg",
+      link: "/studypage"
     },
     {
       title: "DVD",
