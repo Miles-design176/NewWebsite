@@ -7,7 +7,7 @@ const InfoPage = () => {
       link: "/chess/"
     },
     {
-      title: "Wordi",
+      title: "Wordit",
       description: "Challenge your word skills with Wordit! Guess the daily word or try random words. A fun, fast-paced game with unique animations and interactive gameplay. Are you up for the challenge?",
       imageUrl: "https://thesportscentral.com/wp-content/uploads/2025/01/DALL%C2%B7E-2025-01-18-19.05.57-An-artistic-representation-of-a-Wordle-like-game-grid.-The-grid-has-black-squares-with-white-letters-some-tiles-highlighted-in-green-to-indicate-corr-600x400.webp",
       link: "/Wordit/"
