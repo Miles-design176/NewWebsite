@@ -274,15 +274,76 @@ const QuizPage: React.FC<QuizPageProps> = ({ initialQuestions }) => {
     }
   };
   
+  // Update stats function for quiz activity
+  const updateStudyStats = (isCorrect = false) => {
+    const statsData = JSON.parse(localStorage.getItem('flashcardStats') || '{}');
+
+    // Initialize stats if they don't exist
+    const stats = {
+      totalStudied: statsData.totalStudied || 0,
+      cardsFlipped: statsData.cardsFlipped || 0,
+      quizQuestions: statsData.quizQuestions || 0,
+      correctAnswers: statsData.correctAnswers || 0,
+      categoriesStudied: statsData.categoriesStudied || {},
+      studyDates: statsData.studyDates || [],
+      streak: statsData.streak || 0
+    };
+
+    // Update quiz specific stats
+    stats.quizQuestions = (stats.quizQuestions || 0) + 1;
+    if (isCorrect) {
+      stats.correctAnswers = (stats.correctAnswers || 0) + 1;
+    }
+
+    // Update general stats
+    stats.totalStudied += 1;
+
+    // Update categories studied
+    const category = categoryFilteredQuestions[currentQuestionIndex].category;
+    stats.categoriesStudied[category] = (stats.categoriesStudied[category] || 0) + 1;
+
+    // Update study streak
+    const today = new Date().toISOString().split('T')[0];
+    const lastStudyDate = stats.studyDates.length > 0 
+      ? stats.studyDates[stats.studyDates.length - 1].split('T')[0] 
+      : null;
+
+    if (lastStudyDate !== today) {
+      stats.studyDates.push(today);
+
+      // Check if yesterday was studied for streak
+      if (lastStudyDate) {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+        if (lastStudyDate === yesterdayStr) {
+          stats.streak += 1;
+        } else {
+          stats.streak = 1; // Reset streak but count today
+        }
+      } else {
+        stats.streak = 1; // First day of study
+      }
+    }
+
+    // Save updated stats
+    localStorage.setItem('flashcardStats', JSON.stringify(stats));
+  };
+
   // Function to submit answer
   const handleSubmitAnswer = () => {
     if (selectedAnswer && !isAnswerSubmitted) {
       setIsAnswerSubmitted(true);
-      
+
       // Check if answer is correct and update score
-      if (selectedAnswer === categoryFilteredQuestions[currentQuestionIndex].correctAnswer) {
+      const isCorrect = selectedAnswer === categoryFilteredQuestions[currentQuestionIndex].correctAnswer;
+      if (isCorrect) {
         setScore(prevScore => prevScore + 1);
       }
+
+      // Update study stats
+      updateStudyStats(isCorrect);
     }
   };
   
@@ -339,6 +400,15 @@ const QuizPage: React.FC<QuizPageProps> = ({ initialQuestions }) => {
             </button>
             
             {/* Navigation Buttons */}
+            <button 
+              onClick={() => navigate('/stats')}
+              className={`bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg flex items-center ${darkMode ? 'text-gray-200' : ''}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+              </svg>
+              Stats
+            </button>
             <button 
               onClick={navigateToStudy}
               className={`bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center ${darkMode ? 'text-gray-200' : ''}`}

@@ -243,11 +243,65 @@ const FlashcardComponent: React.FC = () => {
     ? flashcards 
     : flashcards.filter(card => card.category === selectedCategory);
 
+  // Update stats function
+  const updateStudyStats = (isFlip = false) => {
+    const statsData = JSON.parse(localStorage.getItem('flashcardStats') || '{}');
+
+    // Initialize stats if they don't exist
+    const stats = {
+      totalStudied: statsData.totalStudied || 0,
+      cardsFlipped: statsData.cardsFlipped || 0,
+      categoriesStudied: statsData.categoriesStudied || {},
+      studyDates: statsData.studyDates || [],
+      streak: statsData.streak || 0
+    };
+
+    // Update stats based on the action
+    if (isFlip) {
+      stats.cardsFlipped += 1;
+    } else {
+      stats.totalStudied += 1;
+
+      // Update categories studied
+      const category = filteredCards[currentCardIndex].category;
+      stats.categoriesStudied[category] = (stats.categoriesStudied[category] || 0) + 1;
+    }
+
+    // Update study streak
+    const today = new Date().toISOString().split('T')[0];
+    const lastStudyDate = stats.studyDates.length > 0 
+      ? stats.studyDates[stats.studyDates.length - 1].split('T')[0] 
+      : null;
+
+    if (lastStudyDate !== today) {
+      stats.studyDates.push(today);
+
+      // Check if yesterday was studied for streak
+      if (lastStudyDate) {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+        if (lastStudyDate === yesterdayStr) {
+          stats.streak += 1;
+        } else {
+          stats.streak = 1; // Reset streak but count today
+        }
+      } else {
+        stats.streak = 1; // First day of study
+      }
+    }
+
+    // Save updated stats
+    localStorage.setItem('flashcardStats', JSON.stringify(stats));
+  };
+
   // Handle card navigation
   const nextCard = () => {
     if (currentCardIndex < filteredCards.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
       setFlipped(false);
+      updateStudyStats();
     }
   };
 
@@ -255,6 +309,7 @@ const FlashcardComponent: React.FC = () => {
     if (currentCardIndex > 0) {
       setCurrentCardIndex(currentCardIndex - 1);
       setFlipped(false);
+      updateStudyStats();
     }
   };
 
@@ -280,7 +335,38 @@ const FlashcardComponent: React.FC = () => {
     }
   }, [darkMode]);
 
-  // Extract unique categories
+    // Add keyboard navigation
+    useEffect(() => {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        // Prevent default behavior for arrow keys and spacebar
+        if (['ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+          e.preventDefault();
+        }
+        
+        switch (e.key) {
+          case 'ArrowRight':
+            nextCard();
+            break;
+          case 'ArrowLeft':
+            prevCard();
+            break;
+          case ' ': // Spacebar
+            setFlipped(!flipped);
+            break;
+          default:
+            break;
+        }
+      };
+  
+      window.addEventListener('keydown', handleKeyDown);
+      
+      // Clean up event listener on component unmount
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }, [currentCardIndex, filteredCards.length, flipped]);
+  
+    // Extract unique categories
   const categories = ['All', ...Array.from(new Set(flashcards.map(card => card.category)))];
 
   // Go back to flashcard selection page
@@ -312,6 +398,15 @@ const FlashcardComponent: React.FC = () => {
               )}
             </button>
             <button 
+              onClick={() => navigate('/stats')}
+              className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg flex items-center"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+              </svg>
+              Stats
+            </button>
+            <button 
               onClick={handleBackClick}
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center"
             >
@@ -332,7 +427,7 @@ const FlashcardComponent: React.FC = () => {
               } ${
                 flipped ? 'rotate-y-180' : ''
               }`}
-              onClick={() => setFlipped(!flipped)}
+              onClick={() => {setFlipped(!flipped); updateStudyStats(true);}}
             >
               <div className={`relative w-full h-full transition-all duration-500 ${
                 flipped ? 'hidden' : 'block'
