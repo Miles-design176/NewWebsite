@@ -395,6 +395,62 @@
     }
   </style>
 </head>
+<!-- Add this modal to your HTML body -->
+<div class="modal" id="lose-modal">
+  <div class="modal-content">
+    <div class="modal-title">You Failed!</div>
+    <div class="modal-text" id="lose-message"></div>
+    <div class="button-container">
+      <button class="button" id="try-again-button">Try Again</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showLoseModal() {
+    const modal = document.getElementById('lose-modal');
+    const loseMessage = document.getElementById('lose-message');
+    loseMessage.textContent = `The word was ${word}`;
+    modal.style.display = 'flex';
+  }
+
+  document.getElementById('try-again-button').addEventListener('click', () => {
+    const modal = document.getElementById('lose-modal');
+    modal.style.display = 'none';
+    resetGame();
+  });
+
+  function submitGuess() {
+    const row = document.querySelector(`.row:nth-child(${currentRow + 1})`);
+    const tiles = row.querySelectorAll('.tile');
+    const guess = Array.from(tiles).map(tile => tile.textContent).join('');
+
+    if (!words.includes(guess)) {
+      showMessage('Not in word list');
+      return;
+    }
+
+    const result = checkGuess(guess);
+    animateResult(result, tiles);
+
+    if (result.every(r => r === 'correct')) {
+      gameOver = true;
+      showWinAnimation();
+      setTimeout(() => {
+        showWinModal();
+      }, 1500);
+    } else if (currentRow === 5) {
+      gameOver = true;
+      setTimeout(() => {
+        showLoseModal();
+      }, 1000);
+    } else {
+      currentRow++;
+      currentTile = 0;
+      updateActiveTile();
+    }
+  }
+</script>
 <body>
   <div class="header">
     <div class="theme-switch-wrapper">
@@ -528,7 +584,7 @@
     }
 
     // Game functionality
-      const words = [
+    const words = [
     "ABACK",
     "ABAFT",
     "ABASE",
@@ -3636,7 +3692,6 @@
     "ZEBRA",
     "ZONES"
   ];
-
     let currentRow = 0;
     let currentTile = 0;
     let gameOver = false;
@@ -3715,7 +3770,9 @@
         }, 1500);
       } else if (currentRow === 5) {
         gameOver = true;
-        showMessage(`Game Over! The word was ${word}`);
+        setTimeout(() => {
+          showLoseModal();
+        }, 1000);
       } else {
         currentRow++;
         currentTile = 0;
