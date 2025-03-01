@@ -9,6 +9,7 @@ import QuizSelection from './components/QuizSelection';
 import Quiz from './components/Quiz';
 import StudyStats from './StudyStats';
 import NotFound from './components/NotFound';
+import FastFoodNutrition from "./components/FastFoodNutrition";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/quiz/:noteId" element={<Quiz />} />
         <Route path="/stats" element={<StudyStats />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="Nutrition" element={<FastFoodNutrition />} />
       </Routes>
     </Router>
   );

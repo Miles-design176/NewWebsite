@@ -40,17 +40,17 @@ const StudyStats = () => {
 
   // Calculate some derived stats
   const categoriesArray = Object.entries(stats.categoriesStudied || {})
-    .map(([category, count]) => ({ category, count }))
-    .sort((a, b) => b.count - a.count);
+  .map(([category, count]) => ({ category, count: Number(count) })) // Ensure count is a number
+  .sort((a, b) => b.count - a.count);
 
   // Calculate daily streak
   const lastStudied = stats.studyDates && stats.studyDates.length > 0 
     ? new Date(stats.studyDates[stats.studyDates.length - 1]) 
     : null;
   
-  const daysSinceLastStudy = lastStudied 
-    ? Math.floor((new Date() - lastStudied) / (1000 * 60 * 60 * 24)) 
-    : null;
+    const daysSinceLastStudy = lastStudied instanceof Date && !isNaN(lastStudied.getTime())
+    ? Math.floor((new Date().getTime() - lastStudied.getTime()) / (1000 * 60 * 60 * 24))
+    : null;  
     
   // Calculate quiz accuracy if available
   const quizAccuracy = stats.quizQuestions && stats.quizQuestions > 0
@@ -168,10 +168,10 @@ const StudyStats = () => {
                     <div className={`w-32 ${darkMode ? 'bg-gray-700' : 'bg-gray-300'} rounded-full h-2.5 mr-2`}>
                       <div 
                         className="bg-blue-600 h-2.5 rounded-full" 
-                        style={{ width: `${Math.min(100, (count / stats.totalStudied) * 100)}%` }}
+                        style={{ width: `${Math.min(100, (Number(count) / stats.totalStudied) * 100)}%` }}
                       ></div>
                     </div>
-                    <span className="text-sm">{count}</span>
+                    <span className="text-sm">{Number(count)}</span>
                   </div>
                 </div>
               ))}
