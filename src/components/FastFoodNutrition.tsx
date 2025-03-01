@@ -53,7 +53,7 @@ const meals: Record<MealKey, {
     calcium: 150,
     potassium: 1050,
     sodium: 1490,
-    description: "The Whopper combo with...",
+    description: "A Whopper combo can take over 6 hours to digest, clog arteries with trans fats, and spike blood sugar like drinking a can of syrup.",
     image: "https://burgerkingks.com/wp-content/uploads/2020/08/new-whopper-meal-ks-web-offer-v.png"
   },
   McNuggetMeal: {
