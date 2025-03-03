@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-type MealKey = "bigmac" | "whopper" | "McNuggetMeal" | "kfcChickenSandwhichCombo";
+type MealKey = "bigmacmeal" | "whoppermeal" | "McNuggetMeal" | "kfcChickenSandwhichCombo";
 
 const meals: Record<MealKey, { 
   name: string;
@@ -13,14 +13,13 @@ const meals: Record<MealKey, {
   cholesterol: number;
   dietaryFiber: number;
   totalSugars: number;
-  addedSugars: number;
   calcium: number;
   potassium: number;
   sodium: number;
   description: string;
   image: string; // ✅ Added image property
 }> = {
-  bigmac: {
+  bigmacmeal: {
     name: "Big Mac Combo Meal",
     calories: 1110,
     protein: 30,
@@ -30,15 +29,14 @@ const meals: Record<MealKey, {
     transFat: 1,
     cholesterol: 85,
     dietaryFiber: 7,
-    totalSugars: 36,
-    addedSugars: 61,
+    totalSugars: 61,
     calcium: 137,
     potassium: 1030,
     sodium: 1375,
     description: "10 Minutes After Eating a Big Mac Meal – Your brain releases dopamine, similar to how it reacts to cocaine, making fast food highly addictive",
     image: "https://s7d1.scene7.com/is/image/mcdonaldsstage/DC_202307_8936_EVM_M_BigMac_Coke_1564x1564:product-header-mobile?wid=1313&hei=1313&dpr=off" // ✅ Set image path
   },
-  whopper: {
+  whoppermeal: {
     name: "Whopper Combo Meal",
     calories: 1210,
     protein: 33,
@@ -48,8 +46,7 @@ const meals: Record<MealKey, {
     transFat: 1.5,
     cholesterol: 95,
     dietaryFiber: 8,
-    totalSugars: 42,
-    addedSugars: 65,
+    totalSugars: 72,
     calcium: 150,
     potassium: 1050,
     sodium: 1490,
@@ -67,7 +64,6 @@ const meals: Record<MealKey, {
     cholesterol: 65,
     dietaryFiber: 4,
     totalSugars: 56,
-    addedSugars: 56,
     calcium: 32,
     potassium: 1020,
     sodium: 1165,
@@ -76,19 +72,18 @@ const meals: Record<MealKey, {
   },
   kfcChickenSandwhichCombo: {
     name: "KFC Famous Chicken Chicken Sandwich Combo",
-    calories: 522,  // Calories in one sandwich
-    protein: 26,  // Protein in grams
-    totalCarbs: 47,  // Total carbohydrates in grams
-    totalFat: 26,  // Total fat in grams
-    saturatedFat: 3.6,  // Saturated fat in grams
-    transFat: 0.3,  // Trans fat in grams
-    cholesterol: 58,  // Cholesterol in milligrams
-    dietaryFiber: 3,  // Dietary fiber in grams
-    totalSugars: 77,  // Total sugars (8g from sandwich + 69g from drink)
-    addedSugars: 69,  // Added sugars in grams (not specified)
-    calcium: 6,  // Calcium in percentage of daily value
-    potassium: 0,  // Potassium not listed
-    sodium: 996,  // Sodium in milligrams
+    calories: 522,  
+    protein: 26, 
+    totalCarbs: 47,  
+    totalFat: 26,  
+    saturatedFat: 3.6,  
+    transFat: 0.3,  
+    cholesterol: 58,  
+    dietaryFiber: 3,  
+    totalSugars: 77,  
+    calcium: 6,  
+    potassium: 0, 
+    sodium: 996,  
     description: "The sugars from the combo (sandwich + drink) lead to a sugar crash, making you feel hungry again despite consuming over 1,200 calories! Your pancreas is overproducing insulin, raising your risk of type 2 diabetes over time.",
     image: "https://images.ctfassets.net/a2mgcrjjefyo/4xttImmwnFeXZ2K3zJM7rv/0116cf60708875ad69b8efda96c69401/Sandwich_FCCS_combo_9122_Regular_1600x1600.png"
   }
@@ -96,7 +91,7 @@ const meals: Record<MealKey, {
 
 const FastFoodNutrition = () => {
   const [activeTab, setActiveTab] = useState('nutrition');
-  const [selectedMeal, setSelectedMeal] = useState<MealKey>("bigmac");
+  const [selectedMeal, setSelectedMeal] = useState<MealKey>("bigmacmeal");
 
   const currentMeal = meals[selectedMeal]; // ✅ TypeScript now understands the type
 
@@ -143,18 +138,18 @@ const FastFoodNutrition = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <MealSelector 
                   name="Big Mac Combo" 
-                  id="bigmac" 
-                  selected={selectedMeal === 'bigmac'} 
-                  onClick={() => setSelectedMeal('bigmac')} 
+                  id="bigmacmeal" 
+                  selected={selectedMeal === 'bigmacmeal'} 
+                  onClick={() => setSelectedMeal('bigmacmeal')} 
                 />
                 <MealSelector 
                   name="Whopper Combo" 
-                  id="whopper" 
-                  selected={selectedMeal === 'whopper'} 
-                  onClick={() => setSelectedMeal('whopper')} 
+                  id="whoppermeal" 
+                  selected={selectedMeal === 'whoppermeal'} 
+                  onClick={() => setSelectedMeal('whoppermeal')} 
                 />
                 <MealSelector 
-                  name="McChiken Combo" 
+                  name=" McNugget Meal" 
                   id="McNuggetMeal" 
                   selected={selectedMeal === 'McNuggetMeal'} 
                   onClick={() => setSelectedMeal('McNuggetMeal')} 
@@ -196,8 +191,7 @@ const FastFoodNutrition = () => {
                   <NutrientBar name="Trans Fat" value={currentMeal.transFat} unit="g" max={2} color="bg-red-800" />
                   <NutrientBar name="Cholesterol" value={currentMeal.cholesterol} unit="mg" max={300} color="bg-orange-500" />
                   <NutrientBar name="Dietary Fiber" value={currentMeal.dietaryFiber} unit="g" max={28} color="bg-green-600" />
-                  <NutrientBar name="Total Sugars" value={currentMeal.totalSugars} unit="g" max={50} color="bg-amber-600" />
-                  <NutrientBar name="Added Sugars" value={currentMeal.addedSugars} unit="g" max={50} color="bg-red-500" />
+                  <NutrientBar name="Total Sugars" value={currentMeal.totalSugars} unit="g" max={50} color="bg-red-500" />
                   <NutrientBar name="Calcium" value={currentMeal.calcium} unit="mg" max={1000} color="bg-blue-500" />
                   <NutrientBar name="Potassium" value={currentMeal.potassium} unit="mg" max={3500} color="bg-green-500" />
                   <NutrientBar name="Sodium" value={currentMeal.sodium} unit="mg" max={2300} color="bg-red-500" />
