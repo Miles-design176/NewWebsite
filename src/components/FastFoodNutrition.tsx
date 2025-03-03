@@ -33,7 +33,7 @@ const meals: Record<MealKey, {
     calcium: 137,
     potassium: 1030,
     sodium: 1375,
-    description: "10 Minutes After Eating a Big Mac Meal – Your brain releases dopamine, similar to how it reacts to cocaine, making fast food highly addictive",
+    description: "10 Minutes After Eating a Big Mac Meal – Your brain releases dopamine, similar to how it reacts to cocaine, making fast food highly addictive.",
     image: "https://s7d1.scene7.com/is/image/mcdonaldsstage/DC_202307_8936_EVM_M_BigMac_Coke_1564x1564:product-header-mobile?wid=1313&hei=1313&dpr=off" // ✅ Set image path
   },
   whoppermeal: {
@@ -71,7 +71,7 @@ const meals: Record<MealKey, {
     image: "https://s7d1.scene7.com/is/image/mcdonaldsstage/DC_202201_8946_EVM_M_10McNuggets_Coke_Glass_1564x1564:product-header-mobile?wid=1313&hei=1313&dpr=off"
   },
   kfcChickenSandwhichCombo: {
-    name: "KFC Famous Chicken Chicken Sandwich Combo",
+    name: "KFC Chicken Sandwich Combo",
     calories: 522,  
     protein: 26, 
     totalCarbs: 47,  
