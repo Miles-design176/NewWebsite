@@ -67,7 +67,7 @@ const meals: Record<MealKey, {
     calcium: 32,
     potassium: 1020,
     sodium: 1165,
-    description: "McNuggets are only about 50% chicken! The rest? A blend of fillers, preservations, and emulsifiers like Dimethylpolysiloxane (used in SILLY PUTTY and industrial lubricants ). TBHQ (tertiary butylhydroquinone), a chemical linked to cancer, liver damage, and vision issues if consumed in high amounts.",
+    description: "McNuggets are only about 50% chicken! The rest? A blend of fillers, preservatives, and emulsifiers like Dimethylpolysiloxane (used in SILLY PUTTY and industrial lubricants ). TBHQ (tertiary butylhydroquinone), a chemical linked to cancer, liver damage, and vision issues if consumed in high amounts.",
     image: "https://s7d1.scene7.com/is/image/mcdonaldsstage/DC_202201_8946_EVM_M_10McNuggets_Coke_Glass_1564x1564:product-header-mobile?wid=1313&hei=1313&dpr=off"
   },
   kfcChickenSandwhichCombo: {
