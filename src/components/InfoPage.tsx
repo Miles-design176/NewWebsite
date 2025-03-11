@@ -25,6 +25,12 @@ const InfoPage = () => {
       link: "/dvd/"
     },
     {
+      title: "Frequently Asked Questions (FAQ)",
+      description: "Welcome to our FAQ section! Here, you'll find answers to common questions about our website, services, and features. Whether you're looking for troubleshooting tips, detailed explanations, or general information, we've got you covered. If you can't find what you're looking for, feel free to reach out!",
+      imageUrl: "https://penguinrandomhouseaudio.com/wp-content/uploads/2024/07/faq-600x400-v2.jpg",
+      link: "/faq"
+    },
+    {
       title: "Something",
       description: "A mysterious project that could be anything. Click to discover what lies behind this intriguing title.",
       imageUrl: "https://static.vecteezy.com/system/resources/thumbnails/008/885/679/small_2x/3d-illustration-of-messages-in-the-form-of-a-question-mark-on-a-black-background-illustration-of-a-question-uncertainty-symbol-of-negotiation-and-uncertainty-photo.jpg",
