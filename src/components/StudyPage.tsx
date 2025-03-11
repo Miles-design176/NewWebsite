@@ -196,6 +196,52 @@ const StudyPage: React.FC<StudyPageProps> = ({
           - Calcium carbonate → calcium oxide + carbon dioxide (Calcium carbonate is the reactant; calcium oxide and carbon dioxide are products).`,
               category: 'Chemistry',
               createdAt: new Date('2025-02-26')
+            },
+            {
+              id: '3',
+              title: 'Provinces and Capitals of France',
+              content: `Auvergne-Rhône-Alpes – Lyon
+
+              Known for its vibrant culinary scene, the city of Lyon is famous for traditional French dishes and its historical significance. It is also surrounded by the stunning Alps, making it a hub for outdoor activities like skiing and hiking.
+              Bourgogne-Franche-Comté – Dijon
+
+              Dijon is famous for its mustard and its historical ties to the Burgundy wine region. The area is known for its medieval towns, vineyards, and natural beauty, making it a cultural and gastronomic treasure.
+              Brittany (Bretagne) – Rennes
+
+              A region known for its Celtic culture, Brittany has a rich history that includes ancient stone monuments, beautiful coastlines, and delicious food like crêpes and cider. Rennes is the region's vibrant cultural center.
+              Centre-Val de Loire – Orléans
+
+              This region is often called the “Garden of France” for its lush landscapes and historic castles like Château de Chambord. Orléans is renowned for its association with Joan of Arc, who liberated the city in the 15th century.
+              Corsica (Corse) – Ajaccio
+
+              An island in the Mediterranean, Corsica is known for its rugged mountains, beautiful beaches, and distinct culture. Ajaccio is the birthplace of Napoleon Bonaparte and offers a unique blend of French and Italian influences.
+              Grand Est – Strasbourg
+
+              Strasbourg, located on the French-German border, is home to the European Parliament and features a blend of French and Germanic culture. It is famous for its stunning Gothic cathedral and its Christmas markets.
+              Hauts-de-France – Lille
+
+              Lille has a strong industrial history and is known for its Flemish-style architecture and cultural festivals. The city is also recognized for its vibrant student population and cuisine, including regional specialties like "moules-frites."
+              Île-de-France – Paris
+
+              The capital of France and one of the world’s most iconic cities, Paris is known for its art, fashion, cuisine, and landmarks like the Eiffel Tower, the Louvre, and Notre-Dame. It’s a global hub for culture and history.
+              Normandy (Normandie) – Rouen
+
+              Normandy is famous for its dramatic coastline, including the D-Day landing beaches. Rouen, its capital, is known for its stunning Gothic cathedral and as the place where Joan of Arc was executed.
+              Nouvelle-Aquitaine – Bordeaux
+
+              Bordeaux is famous for its wine production, with the region being one of the largest wine-growing areas in the world. The area also features beautiful countryside, historic towns, and a strong maritime influence.
+              Occitanie – Toulouse
+
+              Toulouse, known as the "Pink City" due to its terracotta buildings, is a center for aerospace industries. Occitanie is a region of rich history, with Roman heritage, the Pyrenees mountains, and Mediterranean beaches.
+              Pays de la Loire – Nantes
+
+              Nantes is a port city with a rich maritime history and is known for its historic sites, including the Château des Ducs de Bretagne. The region is also famous for its beautiful rivers and coastal landscapes.
+              Provence-Alpes-Côte d'Azur – Marseille
+
+              A sunny region famous for its Mediterranean coastline, Provence is known for its lavender fields, vineyards, and stunning landscapes. Marseille, a historic port city, is a cultural melting pot with a vibrant arts scene.
+              `,
+              category: 'Geography',
+              createdAt: new Date('2025-03-10')
             }
   ]);
 

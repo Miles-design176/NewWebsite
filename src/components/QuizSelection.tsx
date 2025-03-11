@@ -36,23 +36,29 @@ const QuizSelection: React.FC = () => {
   // Sample quiz categories
   const quizCategories: QuizCategory[] = [
     {
-      id: 'all',
-      name: 'All Topics',
-      description: 'Test your knowledge across all available topics.',
-      questionCount: 15
+      id: "all",
+      name: "All Topics",
+      description: "Test your knowledge across all available topics.",
+      questionCount: 34
     },
     {
-     id: 'Biology',
-     name: 'Biology',
-     description: 'Questions about DNA, cell structure, mutations, and cell reproduction.',
-     questionCount: 8
+      id: "Geography",
+      name: "French Provinces and Capitals",
+      description: "Questions about the provinces (regions) of France and their capitals.",
+      questionCount: 19
     },
     {
-     id: 'Chemistry',
-     name: 'Chemistry',
-     description: 'Questions about matter, chemical properties, atoms, and the periodic table.',
-     questionCount: 7
-      }
+      id: "Biology",
+      name: "Biology",
+      description: "Questions about DNA, cell structure, mutations, and cell reproduction.",
+      questionCount: 8
+    },
+    {
+      id: "Chemistry",
+      name: "Chemistry",
+      description: "Questions about matter, chemical properties, atoms, and the periodic table.",
+      questionCount: 7
+    }
   ];
 
   // Navigation functions

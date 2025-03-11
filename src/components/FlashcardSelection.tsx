@@ -36,23 +36,29 @@ const FlashcardSelection: React.FC = () => {
   // Sample flashcard decks
   const flashcardDecks: FlashcardDeck[] = [
     {
-      id: 'all',
-      name: 'All Flashcards',
-      description: 'Review all available flashcards across all topics.',
-      cardCount: 30
-    },
-    {
-      id: 'Biology',
-      name: 'Biology',
-      description: 'Flashcards covering cell biology, DNA, reproduction, and other key biological concepts.',
-      cardCount: 20
-    },
-    {
-      id: 'Chemistry',
-      name: 'Chemistry',
-      description: 'Chemistry concepts including matter, atoms, periodic table, and chemical bonding.',
-      cardCount: 10
-    }
+    id: "all",
+    name: "All Flashcards",
+    description: "Review all available flashcards across all topics.",
+    cardCount: 39
+  },
+  {
+    id: "Geography",
+    name: "French Provinces and Capitals",
+    description: "Flashcards covering the provinces (regions) of France and their capitals.",
+    cardCount: 19
+  },
+  {
+    id: "Biology",
+    name: "Biology",
+    description: "Flashcards covering cell biology, DNA, reproduction, and other key biological concepts.",
+    cardCount: 20
+  },
+  {
+    id: "Chemistry",
+    name: "Chemistry",
+    description: "Chemistry concepts including matter, atoms, periodic table, and chemical bonding.",
+    cardCount: 10
+  }
   ];
 
   // Navigation functions

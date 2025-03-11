@@ -56,185 +56,413 @@ const QuizPage: React.FC<QuizPageProps> = ({ initialQuestions }) => {
   // Sample quiz questions
   const [questions] = useState<QuizQuestion[]>(initialQuestions || [
     {
-        id: '6',
-        question: 'What materials make up the sides and steps of the DNA ladder?',
-        options: [
-          'Nucleotides and proteins',
-          'Alternating sugar and phosphate',
-          'RNA and ribosomes',
-          'Adenine and thymine only'
-        ],
-        correctAnswer: 'Alternating sugar and phosphate',
-        category: 'Biology'
-      },
-      {
-        id: '7',
-        question: 'What is the relationship between chromatin and DNA?',
-        options: [
-          'Chromatin is produced by DNA during replication',
-          'Chromatin is a substance that contains DNA and proteins',
-          'DNA is a component of the nuclear membrane, while chromatin is in the cytoplasm',
-          'Chromatin controls the expression of DNA through methylation'
-        ],
-        correctAnswer: 'Chromatin is a substance that contains DNA and proteins',
-        category: 'Biology'
-      },
-      {
-        id: '8',
-        question: 'What is the function of the nuclear membrane?',
-        options: [
-          'To produce proteins based on DNA',
-          'To separate the chromatin from the cytoplasm in the cell',
-          'To transport materials through vesicles',
-          'To process and package proteins'
-        ],
-        correctAnswer: 'To separate the chromatin from the cytoplasm in the cell',
-        category: 'Biology'
-      },
-      {
-        id: '9',
-        question: 'What is the difference between DNA and RNA?',
-        options: [
-          'DNA is in the nucleus, RNA is only in the cytoplasm',
-          'DNA uses deoxyribose sugar, RNA uses ribose sugar',
-          'DNA is the cell code, RNA is a messenger carrying instructions for protein synthesis',
-          'DNA is double-stranded, RNA is always circular'
-        ],
-        correctAnswer: 'DNA is the cell code, RNA is a messenger carrying instructions for protein synthesis',
-        category: 'Biology'
-      },
-      {
-        id: '10',
-        question: 'What is the purpose of the Golgi body?',
-        options: [
-          'To make proteins based on RNA',
-          'To help process and package proteins and lipids',
-          'To produce energy for the cell',
-          'To store genetic information'
-        ],
-        correctAnswer: 'To help process and package proteins and lipids',
-        category: 'Biology'
-      },
-      {
-        id: '11',
-        question: 'Which of the following is NOT a type of mutation?',
-        options: [
-          'Deletion',
-          'Addition/Insertion',
-          'Substitution',
-          'Replication'
-        ],
-        correctAnswer: 'Replication',
-        category: 'Biology'
-      },
-      {
-        id: '12',
-        question: 'Why is the interphase important for cell reproduction?',
-        options: [
-          'It is when the cell begins to die',
-          'It is when both cell growth and DNA replication occur',
-          'It is when the chromosomes split apart',
-          'It is when cytokinesis occurs'
-        ],
-        correctAnswer: 'It is when both cell growth and DNA replication occur',
-        category: 'Biology'
-      },
-      {
-        id: '13',
-        question: 'What are the four phases of mitosis in order?',
-        options: [
-          'Metaphase, Anaphase, Prophase, Telophase',
-          'Prophase, Metaphase, Anaphase, Telophase',
-          'Anaphase, Telophase, Prophase, Metaphase',
-          'Prophase, Anaphase, Metaphase, Telophase'
-        ],
-        correctAnswer: 'Prophase, Metaphase, Anaphase, Telophase',
-        category: 'Biology'
-      },
-      {
-        id: '14',
-        question: 'What is matter?',
-        options: [
-          'Anything that has color',
-          'Anything that takes up volume and has mass',
-          'Substances that are only in solid form',
-          'Elements found on the periodic table'
-        ],
-        correctAnswer: 'Anything that takes up volume and has mass',
-        category: 'Chemistry'
-      },
-      {
-        id: '15',
-        question: 'What is a pure substance?',
-        options: [
-          'Matter that contains only one type of molecule',
-          'Any element on the periodic table',
-          'A mixture that appears uniform',
-          'Substances without chemical properties'
-        ],
-        correctAnswer: 'Matter that contains only one type of molecule',
-        category: 'Chemistry'
-      },
-      {
-        id: '16',
-        question: 'What is the difference between a chemical change and a physical change?',
-        options: [
-          'Physical changes alter color, chemical changes alter weight',
-          'Chemical changes produce one or more new types of matter, physical changes don\'t change chemical identity',
-          'Physical changes are permanent, chemical changes are temporary',
-          'There is no difference between them'
-        ],
-        correctAnswer: 'Chemical changes produce one or more new types of matter, physical changes don\'t change chemical identity',
-        category: 'Chemistry'
-      },
-      {
-        id: '17',
-        question: 'Which of the following is a chemical property?',
-        options: [
-          'Melting point',
-          'Color',
-          'Flammability',
-          'Density'
-        ],
-        correctAnswer: 'Flammability',
-        category: 'Chemistry'
-      },
-      {
-        id: '18',
-        question: 'What is a vertical column on the periodic table called?',
-        options: [
-          'Period',
-          'Group/Family',
-          'Series',
-          'Block'
-        ],
-        correctAnswer: 'Group/Family',
-        category: 'Chemistry'
-      },
-      {
-        id: '19',
-        question: 'How many electrons can the second electron shell hold?',
-        options: [
-          '2',
-          '8',
-          '18',
-          '32'
-        ],
-        correctAnswer: '8',
-        category: 'Chemistry'
-      },
-      {
-        id: '20',
-        question: 'What is the difference between an atom and an ion?',
-        options: [
-          'An atom is smaller than an ion',
-          'An atom has a neutral charge, an ion has a positive or negative charge',
-          'Atoms contain neutrons, ions do not',
-          'Atoms are elements, ions are compounds'
-        ],
-        correctAnswer: 'An atom has a neutral charge, an ion has a positive or negative charge',
-        category: 'Chemistry'
-      }
+      id: '6',
+      question: 'What materials make up the sides and steps of the DNA ladder?',
+      options: [
+        'Nucleotides and proteins',
+        'Alternating sugar and phosphate',
+        'RNA and ribosomes',
+        'Adenine and thymine only'
+      ],
+      correctAnswer: 'Alternating sugar and phosphate',
+      category: 'Biology'
+    },
+    {
+      id: '7',
+      question: 'What is the relationship between chromatin and DNA?',
+      options: [
+        'Chromatin is produced by DNA during replication',
+        'Chromatin is a substance that contains DNA and proteins',
+        'DNA is a component of the nuclear membrane, while chromatin is in the cytoplasm',
+        'Chromatin controls the expression of DNA through methylation'
+      ],
+      correctAnswer: 'Chromatin is a substance that contains DNA and proteins',
+      category: 'Biology'
+    },
+    {
+      id: '8',
+      question: 'What is the function of the nuclear membrane?',
+      options: [
+        'To produce proteins based on DNA',
+        'To separate the chromatin from the cytoplasm in the cell',
+        'To transport materials through vesicles',
+        'To process and package proteins'
+      ],
+      correctAnswer: 'To separate the chromatin from the cytoplasm in the cell',
+      category: 'Biology'
+    },
+    {
+      id: '9',
+      question: 'What is the difference between DNA and RNA?',
+      options: [
+        'DNA is in the nucleus, RNA is only in the cytoplasm',
+        'DNA uses deoxyribose sugar, RNA uses ribose sugar',
+        'DNA is the cell code, RNA is a messenger carrying instructions for protein synthesis',
+        'DNA is double-stranded, RNA is always circular'
+      ],
+      correctAnswer: 'DNA is the cell code, RNA is a messenger carrying instructions for protein synthesis',
+      category: 'Biology'
+    },
+    {
+      id: '10',
+      question: 'What is the purpose of the Golgi body?',
+      options: [
+        'To make proteins based on RNA',
+        'To help process and package proteins and lipids',
+        'To produce energy for the cell',
+        'To store genetic information'
+      ],
+      correctAnswer: 'To help process and package proteins and lipids',
+      category: 'Biology'
+    },
+    {
+      id: '11',
+      question: 'Which of the following is NOT a type of mutation?',
+      options: [
+        'Deletion',
+        'Addition/Insertion',
+        'Substitution',
+        'Replication'
+      ],
+      correctAnswer: 'Replication',
+      category: 'Biology'
+    },
+    {
+      id: '12',
+      question: 'Why is the interphase important for cell reproduction?',
+      options: [
+        'It is when the cell begins to die',
+        'It is when both cell growth and DNA replication occur',
+        'It is when the chromosomes split apart',
+        'It is when cytokinesis occurs'
+      ],
+      correctAnswer: 'It is when both cell growth and DNA replication occur',
+      category: 'Biology'
+    },
+    {
+      id: '13',
+      question: 'What are the four phases of mitosis in order?',
+      options: [
+        'Metaphase, Anaphase, Prophase, Telophase',
+        'Prophase, Metaphase, Anaphase, Telophase',
+        'Anaphase, Telophase, Prophase, Metaphase',
+        'Prophase, Anaphase, Metaphase, Telophase'
+      ],
+      correctAnswer: 'Prophase, Metaphase, Anaphase, Telophase',
+      category: 'Biology'
+    },
+    {
+      id: '14',
+      question: 'What is matter?',
+      options: [
+        'Anything that has color',
+        'Anything that takes up volume and has mass',
+        'Substances that are only in solid form',
+        'Elements found on the periodic table'
+      ],
+      correctAnswer: 'Anything that takes up volume and has mass',
+      category: 'Chemistry'
+    },
+    {
+      id: '15',
+      question: 'What is a pure substance?',
+      options: [
+        'Matter that contains only one type of molecule',
+        'Any element on the periodic table',
+        'A mixture that appears uniform',
+        'Substances without chemical properties'
+      ],
+      correctAnswer: 'Matter that contains only one type of molecule',
+      category: 'Chemistry'
+    },
+    {
+      id: '16',
+      question: 'What is the difference between a chemical change and a physical change?',
+      options: [
+        'Physical changes alter color, chemical changes alter weight',
+        'Chemical changes produce one or more new types of matter, physical changes don\'t change chemical identity',
+        'Physical changes are permanent, chemical changes are temporary',
+        'There is no difference between them'
+      ],
+      correctAnswer: 'Chemical changes produce one or more new types of matter, physical changes don\'t change chemical identity',
+      category: 'Chemistry'
+    },
+    {
+      id: '17',
+      question: 'Which of the following is a chemical property?',
+      options: [
+        'Melting point',
+        'Color',
+        'Flammability',
+        'Density'
+      ],
+      correctAnswer: 'Flammability',
+      category: 'Chemistry'
+    },
+    {
+      id: '18',
+      question: 'What is a vertical column on the periodic table called?',
+      options: [
+        'Period',
+        'Group/Family',
+        'Series',
+        'Block'
+      ],
+      correctAnswer: 'Group/Family',
+      category: 'Chemistry'
+    },
+    {
+      id: '19',
+      question: 'How many electrons can the second electron shell hold?',
+      options: [
+        '2',
+        '8',
+        '18',
+        '32'
+      ],
+      correctAnswer: '8',
+      category: 'Chemistry'
+    },
+    {
+      id: '20',
+      question: 'What is the difference between an atom and an ion?',
+      options: [
+        'An atom is smaller than an ion',
+        'An atom has a neutral charge, an ion has a positive or negative charge',
+        'Atoms contain neutrons, ions do not',
+        'Atoms are elements, ions are compounds'
+      ],
+      correctAnswer: 'An atom has a neutral charge, an ion has a positive or negative charge',
+      category: 'Chemistry'
+    }, 
+    {
+      id: "21",
+      question: "What is the capital of Île-de-France?",
+      options: [
+        "Marseille",
+        "Lyon",
+        "Paris",
+        "Rouen"
+      ],
+      correctAnswer: "Paris",
+      category: "Geography"
+    },
+    {
+      id: "22",
+      question: "What is the capital of Provence-Alpes-Côte d'Azur?",
+      options: [
+        "Marseille",
+        "Toulouse",
+        "Bordeaux",
+        "Rennes"
+      ],
+      correctAnswer: "Marseille",
+      category: "Geography"
+    },
+    {
+      id: "23",
+      question: "What is the capital of Auvergne-Rhône-Alpes?",
+      options: [
+        "Lyon",
+        "Strasbourg",
+        "Nantes",
+        "Dijon"
+      ],
+      correctAnswer: "Lyon",
+      category: "Geography"
+    },
+    {
+      id: "24",
+      question: "What is the capital of Normandy?",
+      options: [
+        "Rouen",
+        "Paris",
+        "Rennes",
+        "Bordeaux"
+      ],
+      correctAnswer: "Rouen",
+      category: "Geography"
+    },
+    {
+      id: "25",
+      question: "What is the capital of Brittany?",
+      options: [
+        "Nantes",
+        "Rennes",
+        "Toulouse",
+        "Strasbourg"
+      ],
+      correctAnswer: "Rennes",
+      category: "Geography"
+    },
+    {
+      id: "26",
+      question: "What is the capital of Nouvelle-Aquitaine?",
+      options: [
+        "Marseille",
+        "Bordeaux",
+        "Lyon",
+        "Strasbourg"
+      ],
+      correctAnswer: "Bordeaux",
+      category: "Geography"
+    },
+    {
+      id: "27",
+      question: "What is the capital of Occitanie?",
+      options: [
+        "Toulouse",
+        "Marseille",
+        "Rouen",
+        "Rennes"
+      ],
+      correctAnswer: "Toulouse",
+      category: "Geography"
+    },
+    {
+      id: "28",
+      question: "What is the capital of Hauts-de-France?",
+      options: [
+        "Lille",
+        "Bordeaux",
+        "Paris",
+        "Strasbourg"
+      ],
+      correctAnswer: "Lille",
+      category: "Geography"
+    },
+    {
+      id: "29",
+      question: "What is the capital of Grand Est?",
+      options: [
+        "Strasbourg",
+        "Paris",
+        "Nantes",
+        "Rennes"
+      ],
+      correctAnswer: "Strasbourg",
+      category: "Geography"
+    },
+    {
+      id: "30",
+      question: "What is the capital of Pays de la Loire?",
+      options: [
+        "Nantes",
+        "Paris",
+        "Bordeaux",
+        "Rennes"
+      ],
+      correctAnswer: "Nantes",
+      category: "Geography"
+    },
+    {
+      id: "31",
+      question: "What is the capital of Bourgogne-Franche-Comté?",
+      options: [
+        "Dijon",
+        "Lyon",
+        "Marseille",
+        "Strasbourg"
+      ],
+      correctAnswer: "Dijon",
+      category: "Geography"
+    },
+    {
+      id: "32",
+      question: "What is the capital of Centre-Val de Loire?",
+      options: [
+        "Orléans",
+        "Paris",
+        "Lyon",
+        "Bordeaux"
+      ],
+      correctAnswer: "Orléans",
+      category: "Geography"
+    },
+    {
+      id: "33",
+      question: "What is the capital of Corsica?",
+      options: [
+        "Ajaccio",
+        "Paris",
+        "Strasbourg",
+        "Lyon"
+      ],
+      correctAnswer: "Ajaccio",
+      category: "Geography"
+    },
+    {
+      id: "34",
+      question: "What is the capital of La Réunion?",
+      options: [
+        "Saint-Denis",
+        "Paris",
+        "Bordeaux",
+        "Lyon"
+      ],
+      correctAnswer: "Saint-Denis",
+      category: "Geography"
+    },
+    {
+      id: "35",
+      question: "What is the capital of Martinique?",
+      options: [
+        "Fort-de-France",
+        "Paris",
+        "Nantes",
+        "Lyon"
+      ],
+      correctAnswer: "Fort-de-France",
+      category: "Geography"
+    },
+    {
+      id: "36",
+      question: "What is the capital of Guadeloupe?",
+      options: [
+        "Basse-Terre",
+        "Paris",
+        "Lyon",
+        "Marseille"
+      ],
+      correctAnswer: "Basse-Terre",
+      category: "Geography"
+    },
+    {
+      id: "37",
+      question: "What is the capital of Guyane?",
+      options: [
+        "Cayenne",
+        "Paris",
+        "Strasbourg",
+        "Lyon"
+      ],
+      correctAnswer: "Cayenne",
+      category: "Geography"
+    },
+    {
+      id: "38",
+      question: "What is the capital of Mayotte?",
+      options: [
+        "Mamoudzou",
+        "Paris",
+        "Marseille",
+        "Lyon"
+      ],
+      correctAnswer: "Mamoudzou",
+      category: "Geography"
+    },
+    {
+      id: "39",
+      question: "What is the capital of Saint-Pierre and Miquelon?",
+      options: [
+        "Saint-Pierre",
+        "Paris",
+        "Marseille",
+        "Lyon"
+      ],
+      correctAnswer: "Saint-Pierre",
+      category: "Geography"
+    }
     ]);
 
   // Filter questions by noteId if provided

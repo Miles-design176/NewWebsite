@@ -236,6 +236,139 @@ const FlashcardComponent: React.FC = () => {
       category: 'Chemistry',
       createdAt: '2024-10-26'
     },
+    {
+      id: "1",
+      title: "What is the capital of Île-de-France?",
+      content: "The capital of Île-de-France is Paris.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "2",
+      title: "What is the capital of Provence-Alpes-Côte d'Azur?",
+      content: "The capital of Provence-Alpes-Côte d'Azur is Marseille.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "3",
+      title: "What is the capital of Auvergne-Rhône-Alpes?",
+      content: "The capital of Auvergne-Rhône-Alpes is Lyon.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "4",
+      title: "What is the capital of Normandy?",
+      content: "The capital of Normandy is Rouen.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "5",
+      title: "What is the capital of Brittany?",
+      content: "The capital of Brittany is Rennes.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "6",
+      title: "What is the capital of Nouvelle-Aquitaine?",
+      content: "The capital of Nouvelle-Aquitaine is Bordeaux.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "7",
+      title: "What is the capital of Occitanie?",
+      content: "The capital of Occitanie is Toulouse.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "8",
+      title: "What is the capital of Hauts-de-France?",
+      content: "The capital of Hauts-de-France is Lille.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "9",
+      title: "What is the capital of Grand Est?",
+      content: "The capital of Grand Est is Strasbourg.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "10",
+      title: "What is the capital of Pays de la Loire?",
+      content: "The capital of Pays de la Loire is Nantes.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "11",
+      title: "What is the capital of Bourgogne-Franche-Comté?",
+      content: "The capital of Bourgogne-Franche-Comté is Dijon.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "12",
+      title: "What is the capital of Centre-Val de Loire?",
+      content: "The capital of Centre-Val de Loire is Orléans.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "13",
+      title: "What is the capital of Corsica?",
+      content: "The capital of Corsica is Ajaccio.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "14",
+      title: "What is the capital of La Réunion?",
+      content: "The capital of La Réunion is Saint-Denis.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "15",
+      title: "What is the capital of Martinique?",
+      content: "The capital of Martinique is Fort-de-France.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "16",
+      title: "What is the capital of Guadeloupe?",
+      content: "The capital of Guadeloupe is Basse-Terre.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "17",
+      title: "What is the capital of Guyane?",
+      content: "The capital of Guyane is Cayenne.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "18",
+      title: "What is the capital of Mayotte?",
+      content: "The capital of Mayotte is Mamoudzou.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    },
+    {
+      id: "19",
+      title: "What is the capital of Saint-Pierre and Miquelon?",
+      content: "The capital of Saint-Pierre and Miquelon is Saint-Pierre.",
+      category: "Geography",
+      createdAt: "2025-03-10"
+    }
   ]
 
   // Filter cards based on selected category
