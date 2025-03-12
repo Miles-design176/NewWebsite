@@ -23,6 +23,7 @@ body {
     }
   }
   
+
   /* Animation for card flipping */
   .card-flip {
     transition: transform 0.6s;
@@ -32,4 +33,13 @@ body {
   .card-flip.flipped {
     transform: rotateY(180deg);
   }
-  
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
