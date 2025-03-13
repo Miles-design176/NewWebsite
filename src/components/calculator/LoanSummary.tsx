@@ -11,8 +11,11 @@ import {
 import { AmortizationSchedule } from '@/types/calculator';
 import { formatCurrency } from '@/lib/calculatorUtils';
 
+import { CurrencyType } from "@/lib/currencyUtils";
+
 interface LoanSummaryProps {
   amortizationSchedule: AmortizationSchedule[];
+  currency: CurrencyType;
 }
 
 export default function LoanSummary({ amortizationSchedule }: LoanSummaryProps) {

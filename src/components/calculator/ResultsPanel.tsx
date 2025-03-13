@@ -8,6 +8,7 @@ import MortgageTypeComparison from "./MortgageTypeComparison";
 import FinancialTips from "./FinancialTips";
 import PrintResults from "./PrintResults";
 import { AmortizationSchedule, PaymentFrequency } from "@/types/calculator";
+import { CurrencyType } from "@/lib/currencyUtils";
 
 interface ResultsPanelProps {
   homePrice: number;
@@ -28,6 +29,7 @@ interface ResultsPanelProps {
   totalInterestPaid: number;
   totalCost: number;
   amortizationSchedule: AmortizationSchedule[];
+  currency: CurrencyType;
 }
 
 export default function ResultsPanel({
@@ -49,9 +51,10 @@ export default function ResultsPanel({
   totalInterestPaid,
   totalCost,
   amortizationSchedule,
+  currency,
 }: ResultsPanelProps) {
   const [activeTab, setActiveTab] = useState<'amortization' | 'payoff-strategies' | 'affordability' | 'mortgage-type'>('amortization');
-  
+
   return (
     <div className="lg:col-span-2">
       {/* Monthly Payment Summary */}
@@ -63,6 +66,7 @@ export default function ResultsPanel({
         hoaFees={hoaFees}
         propertyTax={propertyTax / 12}
         homeInsurance={homeInsurance / 12}
+        currency={currency} // Added currency prop
       />
 
       {/* Loan Summary */}
@@ -72,33 +76,33 @@ export default function ResultsPanel({
             <h2 className="text-lg font-semibold">Loan Summary</h2>
             <PrintResults />
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div>
               <h3 className="text-xs font-medium text-gray-500">Loan Amount</h3>
               <p className="text-lg font-semibold text-gray-900" id="loan-amount">
-                ${loanAmount.toLocaleString()}
+                {currency === 'USD' ? '$' : 'C$'} {loanAmount.toLocaleString()}
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-xs font-medium text-gray-500">Loan Term</h3>
               <p className="text-lg font-semibold text-gray-900">
                 {loanTerm} years
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-xs font-medium text-gray-500">Total Interest</h3>
               <p className="text-lg font-semibold text-gray-900">
-                ${totalInterestPaid.toLocaleString()}
+                {currency === 'USD' ? '$' : 'C$'} {totalInterestPaid.toLocaleString()}
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-xs font-medium text-gray-500">Total Cost</h3>
               <p className="text-lg font-semibold text-gray-900">
-                ${totalCost.toLocaleString()}
+                {currency === 'USD' ? '$' : 'C$'} {totalCost.toLocaleString()}
               </p>
             </div>
           </div>
@@ -106,6 +110,7 @@ export default function ResultsPanel({
           {/* Amortization Chart */}
           <LoanSummary 
             amortizationSchedule={amortizationSchedule}
+            currency={currency} // Added currency prop
           />
 
           {/* Interactive Feature Tabs */}
@@ -157,9 +162,9 @@ export default function ResultsPanel({
           {/* Tab Content */}
           <div className="py-4">
             {activeTab === 'amortization' && (
-              <AmortizationTable amortizationSchedule={amortizationSchedule} />
+              <AmortizationTable amortizationSchedule={amortizationSchedule} currency={currency}/>
             )}
-            
+
             {activeTab === 'payoff-strategies' && (
               <PayoffStrategies 
                 homePrice={homePrice}
@@ -168,23 +173,26 @@ export default function ResultsPanel({
                 interestRate={interestRate}
                 currentMonthlyPayment={principalAndInterest}
                 loanAmount={loanAmount}
+                currency={currency} // Added currency prop
               />
             )}
-            
+
             {activeTab === 'affordability' && (
               <AffordabilityAnalysis 
                 interestRate={interestRate}
                 propertyTax={propertyTax}
                 homeInsurance={homeInsurance}
                 loanTerm={loanTerm}
+                currency={currency} // Added currency prop
               />
             )}
-            
+
             {activeTab === 'mortgage-type' && (
               <MortgageTypeComparison 
                 loanAmount={loanAmount}
                 loanTerm={loanTerm}
                 fixedRate={interestRate}
+                currency={currency} // Added currency prop
               />
             )}
           </div>

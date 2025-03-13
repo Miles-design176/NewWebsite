@@ -6,11 +6,12 @@ import ResultsPanel from "./ResultsPanel";
 import { useMortgageCalculator } from "../../hooks/useMortgageCalculator";
 import { Button } from "../../components/ui/button";
 import { Home, ChevronDown, ChevronUp, Sliders } from "lucide-react";
+import CurrencySelector from "./CurrencySelector";
 
 export default function MortgageCalculator() {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const calculator = useMortgageCalculator();
-  
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       <header className="bg-white shadow-sm">
@@ -28,8 +29,14 @@ export default function MortgageCalculator() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow overflow-hidden">
               <div className="p-6">
-                <h2 className="text-lg font-semibold mb-6">Mortgage Details</h2>
-                
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-lg font-semibold">Mortgage Details</h2>
+                  <CurrencySelector
+                    currency={calculator.currency}
+                    onCurrencyChange={calculator.setCurrency}
+                  />
+                </div>
+
                 <BasicInputs 
                   homePrice={calculator.homePrice}
                   onHomePriceChange={calculator.setHomePrice}
@@ -39,6 +46,7 @@ export default function MortgageCalculator() {
                   onLoanTermChange={calculator.setLoanTerm}
                   interestRate={calculator.interestRate}
                   onInterestRateChange={calculator.setInterestRate}
+                  currency={calculator.currency}
                 />
 
                 {/* Advanced Options Toggle */}
@@ -112,6 +120,7 @@ export default function MortgageCalculator() {
             totalInterestPaid={calculator.totalInterestPaid}
             totalCost={calculator.totalCost}
             amortizationSchedule={calculator.amortizationSchedule}
+            currency={calculator.currency}
           />
         </div>
       </main>

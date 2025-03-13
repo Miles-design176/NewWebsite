@@ -5,6 +5,8 @@ import { Button } from '../../components/ui/button';
 import { calculateMonthlyPayment, calculateLoanPayoff } from '../../lib/calculatorUtils';
 import { formatCurrency } from '../../lib/calculatorUtils';
 
+import { CurrencyType } from "../../lib/currencyUtils";
+
 interface PayoffStrategiesProps {
   homePrice: number;
   downPayment: number;
@@ -12,6 +14,7 @@ interface PayoffStrategiesProps {
   interestRate: number;
   currentMonthlyPayment: number;
   loanAmount: number;
+  currency: CurrencyType;
 }
 
 export default function PayoffStrategies({

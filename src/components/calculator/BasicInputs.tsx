@@ -6,6 +6,7 @@ import { Button } from "../../components/ui/button";
 import { InfoIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip";
 import { formatCurrency, formatPercentage } from "../../lib/calculatorUtils";
+import { CurrencyType } from "../../lib/currencyUtils"; // Added import for currency type
 
 interface BasicInputsProps {
   homePrice: number;
@@ -16,6 +17,7 @@ interface BasicInputsProps {
   onLoanTermChange: (value: number) => void;
   interestRate: number;
   onInterestRateChange: (value: number) => void;
+  currency: CurrencyType; // Added currency prop
 }
 
 export default function BasicInputs({
@@ -27,6 +29,7 @@ export default function BasicInputs({
   onLoanTermChange,
   interestRate,
   onInterestRateChange,
+  currency, // Added currency prop
 }: BasicInputsProps) {
   const [downPaymentPercent, setDownPaymentPercent] = useState(
     Math.round((downPayment / homePrice) * 100)
@@ -52,8 +55,6 @@ export default function BasicInputs({
     setDownPaymentPercent(Math.round((value / homePrice) * 100));
   };
 
-  const loanTermOptions = [10, 15, 30];
-
   return (
     <div className="space-y-6">
       {/* Home Price Input */}
@@ -72,7 +73,7 @@ export default function BasicInputs({
               </Tooltip>
             </TooltipProvider>
           </Label>
-          <span className="text-sm font-semibold">{formatCurrency(homePrice)}</span>
+          <span className="text-sm font-semibold">{formatCurrency(homePrice, currency)}</span> {/* Updated to use currency prop */}
         </div>
         <div className="flex rounded-md shadow-sm">
           <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
@@ -120,7 +121,7 @@ export default function BasicInputs({
           </Label>
           <div className="flex space-x-4">
             <span className="text-sm font-semibold">{downPaymentPercent}%</span>
-            <span className="text-sm font-semibold">{formatCurrency(downPayment)}</span>
+            <span className="text-sm font-semibold">{formatCurrency(downPayment, currency)}</span> {/* Updated to use currency prop */}
           </div>
         </div>
         <div className="flex rounded-md shadow-sm">
@@ -167,16 +168,27 @@ export default function BasicInputs({
           </TooltipProvider>
         </Label>
         <div className="flex space-x-2 mb-2">
-          {loanTermOptions.map((term) => (
-            <Button
-              key={term}
-              variant={loanTerm === term ? "default" : "outline"}
-              onClick={() => onLoanTermChange(term)}
-              className={`flex-1 ${loanTerm === term ? "bg-[#101729] text-white" : "hover:bg-slate-100"}`}
-            >
-              {term} Years
-            </Button>
-          ))}
+          <Button
+            variant={loanTerm === 30 ? "default" : "outline"}
+            onClick={() => onLoanTermChange(30)}
+            className={loanTerm === 30 ? "bg-[#101729] text-white" : ""}
+          >
+            30 Years
+          </Button>
+          <Button
+            variant={loanTerm === 15 ? "default" : "outline"}
+            onClick={() => onLoanTermChange(15)}
+            className={loanTerm === 15 ? "bg-[#101729] text-white" : ""}
+          >
+            15 Years
+          </Button>
+          <Button
+            variant={loanTerm === 10 ? "default" : "outline"}
+            onClick={() => onLoanTermChange(10)}
+            className={loanTerm === 10 ? "bg-[#101729] text-white" : ""}
+          >
+            10 Years
+          </Button>
         </div>
         <div className="flex rounded-md shadow-sm">
           <Input

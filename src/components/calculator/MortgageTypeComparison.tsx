@@ -14,16 +14,20 @@ import {
 } from 'recharts';
 import { calculateMonthlyPayment, formatCurrency } from '../../lib/calculatorUtils';
 
+import { CurrencyType } from "../../lib/currencyUtils";
+
 interface MortgageTypeComparisonProps {
   loanAmount: number;
   loanTerm: number;
   fixedRate: number;
+  currency: CurrencyType;
 }
 
 export default function MortgageTypeComparison({
   loanAmount,
   loanTerm,
   fixedRate,
+  currency,
 }: MortgageTypeComparisonProps) {
   const [initialArmRate, setInitialArmRate] = useState(fixedRate - 0.75);
   const [armAdjustmentPeriod, setArmAdjustmentPeriod] = useState(5);

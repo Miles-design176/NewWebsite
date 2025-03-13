@@ -1,6 +1,8 @@
 import { Card, CardContent } from "../../components/ui/card";
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip as RechartsTooltip } from "recharts";
 import { formatCurrency } from "../../lib/calculatorUtils";
+import { CurrencyType } from "../../lib/currencyUtils";
+import "../../../src/styles/currencyDropdown.css";
 
 interface MonthlyPaymentSummaryProps {
   principalAndInterest: number;
@@ -10,6 +12,7 @@ interface MonthlyPaymentSummaryProps {
   propertyTax: number;
   homeInsurance: number;
   totalMonthlyPayment: number;
+  currency?: CurrencyType;
 }
 
 export default function MonthlyPaymentSummary({
@@ -20,6 +23,7 @@ export default function MonthlyPaymentSummary({
   propertyTax,
   homeInsurance,
   totalMonthlyPayment,
+  currency = 'USD',
 }: MonthlyPaymentSummaryProps) {
   const chartData = [
     { name: "Principal & Interest", value: principalAndInterest, color: "#3b82f6" },
@@ -35,19 +39,19 @@ export default function MonthlyPaymentSummary({
         <h2 className="text-lg font-semibold mb-4">Monthly Payment</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-[#eff6ff] rounded-lg p-4 border border-blue-100">
+          <div className="bg-blue-50 rounded-lg p-4 border border-blue-100">
             <h3 className="text-sm font-medium text-gray-500">Principal & Interest</h3>
-            <p className="text-2xl font-bold text-gray-900">{formatCurrency(principalAndInterest)}</p>
+            <p className="text-2xl font-bold text-gray-900">{formatCurrency(principalAndInterest, currency)}</p>
           </div>
           
           <div className="bg-blue-50 rounded-lg p-4 border border-blue-100">
             <h3 className="text-sm font-medium text-gray-500">Taxes & Insurance</h3>
-            <p className="text-2xl font-bold text-gray-900">{formatCurrency(taxesAndInsurance)}</p>
+            <p className="text-2xl font-bold text-gray-900">{formatCurrency(taxesAndInsurance, currency)}</p>
           </div>
           
           <div className="bg-[#101729] text-white rounded-lg p-4">
             <h3 className="text-sm font-medium text-white opacity-90">Total Monthly Payment</h3>
-            <p className="text-2xl font-bold">{formatCurrency(totalMonthlyPayment)}</p>
+            <p className="text-2xl font-bold">{formatCurrency(totalMonthlyPayment, currency)}</p>
           </div>
         </div>
         
@@ -65,7 +69,7 @@ export default function MonthlyPaymentSummary({
                   innerRadius={70}
                   outerRadius={90} 
                   paddingAngle={1}
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                   labelLine={false}
                 >
                   {chartData.map((entry, index) => (
@@ -74,7 +78,7 @@ export default function MonthlyPaymentSummary({
                 </Pie>
                 <Legend />
                 <RechartsTooltip 
-                  formatter={(value: number) => formatCurrency(value)} 
+                  formatter={(value: number) => formatCurrency(value, currency)} 
                 />
               </PieChart>
             </ResponsiveContainer>

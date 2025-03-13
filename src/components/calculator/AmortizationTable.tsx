@@ -4,8 +4,11 @@ import { Download } from 'lucide-react';
 import { AmortizationSchedule } from '../../types/calculator';
 import { formatCurrency } from '../../lib/calculatorUtils';
 
+import { CurrencyType } from "../../lib/currencyUtils";
+
 interface AmortizationTableProps {
   amortizationSchedule: AmortizationSchedule[];
+  currency: CurrencyType;
 }
 
 export default function AmortizationTable({ amortizationSchedule }: AmortizationTableProps) {

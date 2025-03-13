@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
 import {
@@ -6,6 +6,7 @@ import {
   ComparisonScenario,
   PaymentFrequency,
 } from "../types/calculator";
+import { CurrencyType } from "../lib/currencyUtils";
 import {
   calculateMonthlyPayment,
   calculatePMI,
@@ -27,6 +28,7 @@ export function useMortgageCalculator() {
   const [extraPayment, setExtraPayment] = useState(0);
   const [paymentFrequency, setPaymentFrequency] = useState<PaymentFrequency>("monthly");
   const [startDate, setStartDate] = useState(format(new Date(), "yyyy-MM-dd"));
+  const [currency, setCurrency] = useState<CurrencyType>("USD"); // Added currency state with proper type
 
   // Loan Comparison
   const [comparisonScenarios, setComparisonScenarios] = useState<ComparisonScenario[]>([]);
@@ -46,7 +48,7 @@ export function useMortgageCalculator() {
     // Calculate loan amount
     const calculatedLoanAmount = homePrice - downPayment;
     setLoanAmount(calculatedLoanAmount);
-    
+
     // Calculate principal and interest payment
     const calculatedPrincipalAndInterest = calculateMonthlyPayment(
       calculatedLoanAmount,
@@ -54,17 +56,17 @@ export function useMortgageCalculator() {
       loanTerm
     );
     setPrincipalAndInterest(calculatedPrincipalAndInterest);
-    
+
     // Calculate monthly taxes and insurance
     const monthlyPropertyTax = propertyTax / 12;
     const monthlyHomeInsurance = homeInsurance / 12;
     const calculatedTaxesAndInsurance = monthlyPropertyTax + monthlyHomeInsurance;
     setTaxesAndInsurance(calculatedTaxesAndInsurance);
-    
+
     // Calculate PMI if applicable
     const calculatedPmi = calculatePMI(calculatedLoanAmount, homePrice, pmiRate);
     setPmi(calculatedPmi);
-    
+
     // Calculate total monthly payment
     const calculatedTotalMonthlyPayment = 
       calculatedPrincipalAndInterest + 
@@ -72,7 +74,7 @@ export function useMortgageCalculator() {
       calculatedPmi + 
       hoaFees;
     setTotalMonthlyPayment(calculatedTotalMonthlyPayment);
-    
+
     // Calculate amortization schedule
     const schedule = calculateAmortizationSchedule(
       calculatedLoanAmount,
@@ -82,14 +84,14 @@ export function useMortgageCalculator() {
       paymentFrequency
     );
     setAmortizationSchedule(schedule);
-    
+
     // Calculate total interest paid
     const calculatedTotalInterestPaid = schedule.reduce(
       (total, year) => total + year.interestYTD,
       0
     );
     setTotalInterestPaid(Math.round(calculatedTotalInterestPaid));
-    
+
     // Calculate total cost
     const calculatedTotalCost = calculatedLoanAmount + calculatedTotalInterestPaid;
     setTotalCost(Math.round(calculatedTotalCost));
@@ -106,8 +108,8 @@ export function useMortgageCalculator() {
     paymentFrequency,
   ]);
 
-  // Loan comparison functions
-  const addComparisonScenario = () => {
+  // Manage comparison scenarios
+  const addComparisonScenario = useCallback(() => {
     if (comparisonScenarios.length < 3) {
       const newScenario: ComparisonScenario = {
         id: uuidv4(),
@@ -117,19 +119,19 @@ export function useMortgageCalculator() {
       };
       setComparisonScenarios([...comparisonScenarios, newScenario]);
     }
-  };
+  }, [comparisonScenarios, interestRate, loanTerm, loanAmount]);
 
-  const removeComparisonScenario = (id: string) => {
+  const removeComparisonScenario = useCallback((id: string) => {
     setComparisonScenarios(comparisonScenarios.filter(scenario => scenario.id !== id));
-  };
+  }, [comparisonScenarios]);
 
-  const updateComparisonScenario = (id: string, updates: Partial<ComparisonScenario>) => {
+  const updateComparisonScenario = useCallback((id: string, updates: Partial<ComparisonScenario>) => {
     setComparisonScenarios(
       comparisonScenarios.map(scenario => 
         scenario.id === id ? { ...scenario, ...updates } : scenario
       )
     );
-  };
+  }, [comparisonScenarios]);
 
   return {
     // Basic inputs
@@ -141,7 +143,7 @@ export function useMortgageCalculator() {
     setLoanTerm,
     interestRate,
     setInterestRate,
-    
+
     // Advanced options
     propertyTax,
     setPropertyTax,
@@ -157,13 +159,14 @@ export function useMortgageCalculator() {
     setPaymentFrequency,
     startDate,
     setStartDate,
-    
-    // Loan comparison
+    currency,
+    setCurrency, 
     comparisonScenarios,
+    setComparisonScenarios,
     addComparisonScenario,
     removeComparisonScenario,
     updateComparisonScenario,
-    
+
     // Calculated values
     loanAmount,
     principalAndInterest,

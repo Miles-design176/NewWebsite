@@ -4,11 +4,14 @@ import { Label } from '../../components/ui/label';
 import { Button } from '../../components/ui/button';
 import { calculateAffordability, formatCurrency } from '../../lib/calculatorUtils';
 
+import { CurrencyType } from "../../lib/currencyUtils";
+
 interface AffordabilityAnalysisProps {
   interestRate: number;
   propertyTax: number;
   homeInsurance: number;
   loanTerm: number;
+  currency: CurrencyType;
 }
 
 export default function AffordabilityAnalysis({
