@@ -167,6 +167,9 @@ const LandingPage = () => {
                 <Link to="/" className="border-blue-500 text-blue-500 border-b-2 px-1 pt-1 text-sm font-medium">
                   Home
                 </Link>
+                <Link to="/calc" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
+                  Mortgage Calculator
+                </Link>
                 <Link to="/info" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
                   Info
                 </Link>
@@ -175,9 +178,6 @@ const LandingPage = () => {
                 </Link>
                 <Link to="/pricing" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
                   Pricing
-                </Link>
-                <Link to="/calc" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Mortgage Calculator
                 </Link>
               </div>
             </div>
