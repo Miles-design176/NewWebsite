@@ -176,6 +176,9 @@ const LandingPage = () => {
                 <Link to="/pricing" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
                   Pricing
                 </Link>
+                <Link to="/calc" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
+                  Mortgage Calculator
+                </Link>
               </div>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
