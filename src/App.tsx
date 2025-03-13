@@ -14,6 +14,8 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import ForgotPassword from "./components/forgot-password";
 import Info from "./components/Info";
+import Calc from "./components/calculator/MortgageCalculator";
+
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
         <Route path="signin" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="calc" element={<Calc />} />
       </Routes>
     </Router>
   );
