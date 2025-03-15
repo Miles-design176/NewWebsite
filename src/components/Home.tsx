@@ -211,6 +211,9 @@ const LandingPage = () => {
               <Link to="/" className="bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500 block pl-3 pr-4 py-2 text-base font-medium">
                 Home
               </Link>
+              <Link to="/calc" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                Mortgage Calculator
+              </Link>
               <Link to="/info" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                 Info
               </Link>
