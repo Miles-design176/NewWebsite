@@ -15,8 +15,7 @@ import SignUp from "./components/signup";
 import ForgotPassword from "./components/forgot-password";
 import Info from "./components/Info";
 import Calc from "./components/calculator/MortgageCalculator";
-import EvilGoose from "./components/Download";
-
+import DownloadPage from "./components/Multi-Download Page";
 
 function App() {
   return (
@@ -39,7 +38,7 @@ function App() {
         <Route path="signup" element={<SignUp />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="calc" element={<Calc />} />
-        <Route path="evilgoose" element={<EvilGoose />} />
+        <Route path="downloadpage" element={<DownloadPage />} />
       </Routes>
     </Router>
   );
