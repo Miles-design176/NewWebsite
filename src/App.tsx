@@ -16,6 +16,7 @@ import ForgotPassword from "./components/forgot-password";
 import Info from "./components/Info";
 import Calc from "./components/calculator/MortgageCalculator";
 import DownloadPage from "./components/Multi-Download Page";
+import Money from "./components/Money-Visualizer";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="calc" element={<Calc />} />
         <Route path="downloadpage" element={<DownloadPage />} />
+        <Route path="Money" element={<Money />} />
       </Routes>
     </Router>
   );
