@@ -170,6 +170,9 @@ const LandingPage = () => {
                 <Link to="/calc" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
                   Mortgage Calculator
                 </Link>
+                <Link to="/money" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
+                  Money Visualize
+                </Link>
                 <Link to="/info" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
                   Info
                 </Link>
@@ -208,21 +211,24 @@ const LandingPage = () => {
         {mobileMenuOpen && (
           <div className="sm:hidden" id="mobile-menu">
             <div className="pt-2 pb-3 space-y-1">
-              <Link to="/" className="bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500 block pl-3 pr-4 py-2 text-base font-medium">
-                Home
-              </Link>
-              <Link to="/calc" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Mortgage Calculator
-              </Link>
-              <Link to="/info" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Info
-              </Link>
-              <Link to="/features" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Features
-              </Link>
-              <Link to="/pricing" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Pricing
-              </Link>
+                <Link to="/" className="bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500 block pl-3 pr-4 py-2 text-base font-medium">
+                  Home
+                </Link>
+                <Link to="/calc" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Mortgage Calculator
+                </Link>
+                <Link to="/money" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Money Visualize
+                </Link>
+                <Link to="/info" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Info
+                </Link>
+                <Link to="/features" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Features
+                </Link>
+                <Link to="/pricing" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Pricing
+                </Link>
               <div className="pt-4 pb-3 border-t border-slate-200">
                 <Link to="/signin" className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 shadow-sm hover:bg-orange-500/90">
                   Sign in

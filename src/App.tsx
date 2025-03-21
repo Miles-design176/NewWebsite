@@ -17,6 +17,8 @@ import Info from "./components/Info";
 import Calc from "./components/calculator/MortgageCalculator";
 import DownloadPage from "./components/Multi-Download Page";
 import Money from "./components/Money-Visualizer";
+import Features from "./components/Features";
+import Pricing from "./components/Pricing";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
         <Route path="calc" element={<Calc />} />
         <Route path="downloadpage" element={<DownloadPage />} />
         <Route path="Money" element={<Money />} />
+        <Route path="Features" element={<Features />} />
+        <Route path="Pricing" element={<Pricing />} />
       </Routes>
     </Router>
   );
