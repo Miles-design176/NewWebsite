@@ -2,36 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import Navbar from "./NavBar/navbar";
 
 const FeaturesPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      {/* Navbar */}
-      <nav className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link to="/" className="flex-shrink-0 flex items-center">
-                <div className="h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center mr-2">
-                  <span className="text-white font-bold">B</span>
-                </div>
-                <span className="text-xl font-bold text-blue-500">bestwebsite<span className="text-orange-500">.ca</span></span>
-              </Link>
-            </div>
-            <div className="flex items-center">
-              <Link to="/">
-                <Button
-                  variant="outline"
-                  className="border-slate-200 hover:bg-slate-50"
-                >
-                  Return to Home
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar activePage="info" />
       <main className="flex-1 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-slate-900 mb-8">

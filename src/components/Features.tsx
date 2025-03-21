@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import Navbar from "./NavBar/navbar";
 import {
   Bolt,
   LockKeyhole,
@@ -140,93 +141,7 @@ const FeaturesPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      {/* Navbar */}
-      <nav className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link to="/" className="flex-shrink-0 flex items-center">
-                <div className="h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center mr-2">
-                  <span className="text-white font-bold">B</span>
-                </div>
-                <span className="text-xl font-bold text-blue-500">bestwebsite<span className="text-orange-500">.ca</span></span>
-              </Link>
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <Link to="/" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Home
-                </Link>
-                <Link to="/calc" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Mortgage Calculator
-                </Link>
-                <Link to="/money" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Money Visualize
-                </Link>
-                <Link to="/info" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Info
-                </Link>
-                <Link to="/features" className="border-blue-500 text-blue-500 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Features
-                </Link>
-                <Link to="/pricing" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Pricing
-                </Link>
-              </div>
-            </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center">
-              <button type="button" className="bg-white p-1 rounded-full text-slate-400 hover:text-slate-500 focus:outline-none">
-                <span className="sr-only">View notifications</span>
-                <Bell className="h-6 w-6" />
-              </button>
-              <div className="ml-3 relative">
-                <Link to="/signin" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 shadow-sm hover:bg-orange-500/90 focus:outline-none transition">
-                  Sign in
-                </Link>
-              </div>
-            </div>
-            <div className="-mr-2 flex items-center sm:hidden">
-              <button 
-                type="button" 
-                className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                <span className="sr-only">Open main menu</span>
-                <Menu className="block h-6 w-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="sm:hidden" id="mobile-menu">
-            <div className="pt-2 pb-3 space-y-1">
-                <Link to="/" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Home
-                </Link>
-                <Link to="/calc" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Mortgage Calculator
-                </Link>
-                <Link to="/money" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Money Visualize
-                </Link>
-                <Link to="/info" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Info
-                </Link>
-                <Link to="/features" className="bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500 block pl-3 pr-4 py-2 text-base font-medium">
-                  Features
-                </Link>
-                <Link to="/pricing" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Pricing
-                </Link>
-              <div className="pt-4 pb-3 border-t border-slate-200">
-                <Link to="/signin" className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 shadow-sm hover:bg-orange-500/90">
-                  Sign in
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
-
+      <Navbar activePage="features" />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-blue-500 to-blue-600 py-16">

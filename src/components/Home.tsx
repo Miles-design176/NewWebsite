@@ -4,12 +4,14 @@ import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Separator } from "./ui/separator";
+import Navbar from "./NavBar/navbar";
 import {
   Bolt,
   LockKeyhole,
   MessageSquare,
   Code,
   Bell,
+  BellOff,
   Menu,
   Star,
   ArrowUp,
@@ -83,13 +85,10 @@ const testimonials = [
 ];
 
 const LandingPage = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentJoke, setCurrentJoke] = useState(jokes[0]);
   const [jokeTransition, setJokeTransition] = useState(false);
   const [easterEggOpen, setEasterEggOpen] = useState(false);
-  const [logoClickCount, setLogoClickCount] = useState(0);
-  const [discoMode, setDiscoMode] = useState(false);
-  
+
   // Konami code implementation
   const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
   const [konamiIndex, setKonamiIndex] = useState(0);
@@ -130,115 +129,15 @@ const LandingPage = () => {
       setJokeTransition(false);
     }, 300);
   };
-  
-  // Logo easter egg
-  const handleLogoClick = () => {
-    const newCount = logoClickCount + 1;
-    setLogoClickCount(newCount);
-    
-    if (newCount >= 5) {
-      setDiscoMode(true);
-      setTimeout(() => {
-        setDiscoMode(false);
-        setLogoClickCount(0);
-      }, 3000);
-    }
-  };
-  
+ 
   // Set a random joke on initial load
   useEffect(() => {
     setCurrentJoke(jokes[Math.floor(Math.random() * jokes.length)]);
   }, []);
 
   return (
-    <div className={`min-h-screen flex flex-col ${discoMode ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 transition-all duration-500' : 'bg-slate-50'}`}>
-      {/* Navbar */}
-      <nav className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center" onClick={handleLogoClick}>
-                <div className="h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center mr-2">
-                  <span className="text-white font-bold">B</span>
-                </div>
-                <span className="text-xl font-bold text-blue-500">bestwebsite<span className="text-orange-500">.ca</span></span>
-              </Link>
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <Link to="/" className="border-blue-500 text-blue-500 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Home
-                </Link>
-                <Link to="/calc" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Mortgage Calculator
-                </Link>
-                <Link to="/money" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Money Visualize
-                </Link>
-                <Link to="/info" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Info
-                </Link>
-                <Link to="/features" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Features
-                </Link>
-                <Link to="/pricing" className="border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700 border-b-2 px-1 pt-1 text-sm font-medium">
-                  Pricing
-                </Link>
-              </div>
-            </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center">
-              <button type="button" className="bg-white p-1 rounded-full text-slate-400 hover:text-slate-500 focus:outline-none">
-                <span className="sr-only">View notifications</span>
-                <Bell className="h-6 w-6" />
-              </button>
-              <div className="ml-3 relative">
-                <Link to="/signin" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 shadow-sm hover:bg-orange-500/90 focus:outline-none transition">
-                  Sign in
-                </Link>
-              </div>
-            </div>
-            <div className="-mr-2 flex items-center sm:hidden">
-              <button 
-                type="button" 
-                className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                <span className="sr-only">Open main menu</span>
-                <Menu className="block h-6 w-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="sm:hidden" id="mobile-menu">
-            <div className="pt-2 pb-3 space-y-1">
-                <Link to="/" className="bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500 block pl-3 pr-4 py-2 text-base font-medium">
-                  Home
-                </Link>
-                <Link to="/calc" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Mortgage Calculator
-                </Link>
-                <Link to="/money" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Money Visualize
-                </Link>
-                <Link to="/info" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Info
-                </Link>
-                <Link to="/features" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Features
-                </Link>
-                <Link to="/pricing" className="border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                  Pricing
-                </Link>
-              <div className="pt-4 pb-3 border-t border-slate-200">
-                <Link to="/signin" className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 shadow-sm hover:bg-orange-500/90">
-                  Sign in
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
-
+    <div className="min-h-screen flex flex-col bg-slate-50">
+      <Navbar activePage="home" />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative bg-white overflow-hidden">
@@ -440,7 +339,7 @@ const LandingPage = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className="w-full px-5 py-3 border border-transparent rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-500 focus:ring-white focus:outline-none"
+                    className="w-[300px] sm:w-[400px] md:w-[500px] px-5 py-3 border border-transparent rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-500 focus:ring-white focus:outline-none"
                     placeholder="Enter your email"
                   />
                   <div className="mt-3 sm:mt-0 sm:ml-3">
@@ -453,7 +352,7 @@ const LandingPage = () => {
                   </div>
                 </form>
                 <p className="mt-3 text-sm text-blue-200">
-                  We promise not to spam you. Except with jokes. We'll definitely spam you with jokes.
+                  We will never spam you. Or will we? Honestly, we’re as curious as you are.
                 </p>
               </div>
             </div>
@@ -465,6 +364,24 @@ const LandingPage = () => {
       <footer className="bg-slate-800">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-sm font-semibold text-slate-300 tracking-wider uppercase">Company</h3>
+              <ul className="mt-4 space-y-4">
+                <li><Link to="/about" className="text-base text-slate-400 hover:text-slate-300">About</Link></li>
+                <li><Link to="/jobs" className="text-base text-slate-400 hover:text-slate-300">Jobs</Link></li>
+                <li><Link to="/press" className="text-base text-slate-400 hover:text-slate-300">Press</Link></li>
+                <li><Link to="/partners" className="text-base text-slate-400 hover:text-slate-300">Partners</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-slate-300 tracking-wider uppercase">Resources</h3>
+              <ul className="mt-4 space-y-4">
+                <li><Link to="/docs" className="text-base text-slate-400 hover:text-slate-300">Documentation</Link></li>
+                <li><Link to="/guides" className="text-base text-slate-400 hover:text-slate-300">Guides</Link></li>
+                <li><Link to="/api" className="text-base text-slate-400 hover:text-slate-300">API Status</Link></li>
+                <li><Link to="/blog" className="text-base text-slate-400 hover:text-slate-300">Blog</Link></li>
+              </ul>
+            </div>
             <div>
               <h3 className="text-sm font-semibold text-slate-300 tracking-wider uppercase">Company</h3>
               <ul className="mt-4 space-y-4">
