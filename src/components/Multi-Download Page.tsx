@@ -4,6 +4,7 @@ interface DownloadItem {
   title: string;
   description: string;
   fileName: string;
+  author: string;
   fileSize: string;
   fileType: string;
   icon: React.ReactNode;
@@ -15,6 +16,7 @@ const DownloadCard: React.FC<DownloadCardProps> = ({
   title, 
   description, 
   fileName, 
+  author,
   fileSize, 
   fileType, 
   icon 
@@ -29,7 +31,7 @@ const DownloadCard: React.FC<DownloadCardProps> = ({
           <div className="ml-4 flex-1">
             <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
             <p className="text-sm text-gray-500">{description}</p>
-          </div>
+            <p className="text-xs font-semibold text-gray-800">By: <span className="font-semibold text-gray-800 text-xs mt-1">{author}</span></p> </div>
         </div>
         <div className="mt-4 flex items-center justify-between">
           <div className="text-xs text-gray-500">
@@ -66,95 +68,21 @@ const DownloadsPage: React.FC = () => {
     {
       title: "EvilGoose Application",
       description: "Latest version with all features and improvements",
+      author: "Jakoby",
       fileName: "EvilGoose.zip",
-      fileSize: "42.3 MB",
-      fileType: "ZIP Archive",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-blue-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-          />
-        </svg>
-      ),
+      fileSize: "13.4 MB",
+      fileType: "ZIP File",
+      icon: <img src="/images/goose.png" alt="EvilGoose Icon" className="h-12 w-12" />,
     },
     {
       title: "1.8.9 Texture Pack",
       description: "Complete guide and reference for all features",
+      author: "Technolot",
       fileName: "! §4§l§oQwesta§r §7[§8§o16x§r§7]§8.zip",
       fileSize: "17.6 MB",
       fileType: "ZIP File",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-red-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Place Holder",
-      description: "Place Holder",
-      fileName: "",
-      fileSize: "0 MB",
-      fileType: "ZIP Archive",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-green-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Place Holder",
-      description: "Place Holder",
-      fileName: "",
-      fileSize: "0 MB",
-      fileType: "ZIP Archive",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-purple-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-          />
-        </svg>
-      ),
-    },
+      icon: <img src="/images/texturepack.png" alt="EvilGoose Icon" className="h-12 w-12" />,
+    }
   ];
 
   return (
@@ -174,6 +102,7 @@ const DownloadsPage: React.FC = () => {
             <DownloadCard key={index} {...download} />
           ))}
         </div>
+        <p className="mt-6 text-center text-gray-500 text-lg">More coming soon...</p>
 
         <div className="mt-12 bg-blue-50 rounded-xl p-6">
           <div className="flex items-start">
@@ -194,24 +123,10 @@ const DownloadsPage: React.FC = () => {
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-blue-800">Need help?</h3>
+              <h3 className="text-sm font-medium text-blue-800">Disclaimer</h3>
               <div className="mt-2 text-sm text-blue-700">
                 <p>
-                  If you're having trouble with downloads, please check our{" "}
-                  <a
-                    href="/troubleshooting"
-                    className="font-medium underline hover:text-blue-600"
-                  >
-                    troubleshooting guide
-                  </a>{" "}
-                  or{" "}
-                  <a
-                    href="/support"
-                    className="font-medium underline hover:text-blue-600"
-                  >
-                    contact support
-                  </a>
-                  .
+                  This is not my work. This page simply serves as a place for others to download and access these files.
                 </p>
               </div>
             </div>

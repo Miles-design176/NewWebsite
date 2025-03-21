@@ -15,7 +15,7 @@ const SwitchForPricing: React.FC<SwitchProps> = ({ checked, onCheckedChange }) =
     >
       <div
         className={`bg-white w-5 h-5 rounded-full shadow-md transform transition duration-300 ${
-          checked ? "translate-x-6" : "translate-x-0"
+          checked ? "translate-x-5" : "translate-x-0"
         }`}
       ></div>
     </button>
