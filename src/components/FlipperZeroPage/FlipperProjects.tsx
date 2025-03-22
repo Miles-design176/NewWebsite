@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'wouter';
 import { GithubIcon } from '../FlipperZeroPage/icons/GithubIcon';
+import FlipperNavbar from './Navbar/FlipperNavbar'; // Import the navbar component
 import {
   AlertDialog,
   AlertDialogContent,
@@ -216,6 +217,9 @@ const FlipperProjects: React.FC = () => {
 
   return (
     <div className="bg-black min-h-screen text-white font-sans">
+      {/* Add the navbar component at the top with 'projects' as the active page */}
+      <FlipperNavbar activePage="projects" />
+      
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row md:items-center justify-between">

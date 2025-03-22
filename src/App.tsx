@@ -21,6 +21,8 @@ import Features from "./components/Features";
 import Pricing from "./components/Pricing";
 import FlipperProjects from "./components/FlipperZeroPage/FlipperProjects";
 import TemperaryDownloadPage from "./components/FlipperZeroPage/DownloadPage";
+import Recipes from "./components/Recipes/MainPage";
+import RecipeDetails from "./components/Recipes/RecipeDetail";
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
         <Route path="Pricing" element={<Pricing />} />
         <Route path="flipper" element={<FlipperProjects />} />
         <Route path="/download" element={<TemperaryDownloadPage />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:id" element={<RecipeDetails />} />
       </Routes>
     </Router>
   );

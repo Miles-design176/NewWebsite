@@ -70,6 +70,9 @@ const Navbar = ({ activePage = "home" }) => {
                 <Link to="/money" className={`${activePage === "money" ? "border-blue-500 text-blue-500" : "border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700"} border-b-2 px-1 pt-1 text-sm font-medium ${discoMode ? 'text-white border-white hover:text-white hover:border-white' : ''}`}>
                   Money Visualize
                 </Link>
+                <Link to="/recipes" className={`${activePage === "recipes" ? "border-blue-500 text-blue-500" : "border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700"} border-b-2 px-1 pt-1 text-sm font-medium ${discoMode ? 'text-white border-white hover:text-white hover:border-white' : ''}`}>
+                  Recipes
+                </Link>
                 <Link to="/info" className={`${activePage === "info" ? "border-blue-500 text-blue-500" : "border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700"} border-b-2 px-1 pt-1 text-sm font-medium ${discoMode ? 'text-white border-white hover:text-white hover:border-white' : ''}`}>
                   Info
                 </Link>
@@ -130,8 +133,14 @@ const Navbar = ({ activePage = "home" }) => {
               <Link to="/calc" className={`${activePage === "calc" ? (discoMode ? "bg-white/20 border-l-4 border-white text-white" : "bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500") : (discoMode ? "border-transparent text-white hover:bg-white/10 hover:border-white hover:text-white" : "border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700")} block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}>
                 Mortgage Calculator
               </Link>
+              <Link to="/flipper" className={`${activePage === "flipper" ? (discoMode ? "bg-white/20 border-l-4 border-white text-white" : "bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500") : (discoMode ? "border-transparent text-white hover:bg-white/10 hover:border-white hover:text-white" : "border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700")} block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}>
+                Flipper
+              </Link>
               <Link to="/money" className={`${activePage === "money" ? (discoMode ? "bg-white/20 border-l-4 border-white text-white" : "bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500") : (discoMode ? "border-transparent text-white hover:bg-white/10 hover:border-white hover:text-white" : "border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700")} block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}>
                 Money Visualize
+              </Link>
+              <Link to="/recipes" className={`${activePage === "money" ? (discoMode ? "bg-white/20 border-l-4 border-white text-white" : "bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500") : (discoMode ? "border-transparent text-white hover:bg-white/10 hover:border-white hover:text-white" : "border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700")} block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}>
+                Recipes
               </Link>
               <Link to="/info" className={`${activePage === "info" ? (discoMode ? "bg-white/20 border-l-4 border-white text-white" : "bg-blue-500 bg-opacity-10 border-l-4 border-blue-500 text-blue-500") : (discoMode ? "border-transparent text-white hover:bg-white/10 hover:border-white hover:text-white" : "border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700")} block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}>
                 Info
