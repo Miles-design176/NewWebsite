@@ -49,7 +49,7 @@ export interface Recipe {
         "Done when both sides are golden brown"
       ],
       nutritionFacts: {
-        calories: "1,130 kcal",
+        calories: "1130 kcal",
         protein: "47g",
         carbs: "133g",
         fat: "46g"
@@ -93,7 +93,7 @@ export interface Recipe {
         "Enjoy!"
       ],
       nutritionFacts: {
-        calories: "3,156 kcal",
+        calories: "3156 kcal",
         protein: "38g",
         carbs: "440g",
         fat: "150g"
