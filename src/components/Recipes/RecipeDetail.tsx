@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { Link } from 'wouter';
+import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Users, Lightbulb } from 'lucide-react';
 import { Skeleton } from '../ui/skeleton';
 import Navbar from '../NavBar/navbar';
@@ -87,7 +87,7 @@ const RecipeDetail = () => {
       <div className="min-h-screen bg-slate-50">
         <Navbar activePage="recipes" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link href="/recipes" className="flex items-center text-blue-500 hover:text-blue-700 mb-6 transition">
+          <Link to="/recipes" className="flex items-center text-blue-500 hover:text-blue-700 mb-6 transition">
             <ArrowLeft className="h-5 w-5 mr-1" />
             Back to recipes
           </Link>
@@ -104,7 +104,7 @@ const RecipeDetail = () => {
     <div className="min-h-screen bg-slate-50">
       <Navbar activePage="recipes" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link href="/recipes" className="flex items-center text-blue-500 hover:text-blue-700 mb-6 transition">
+        <Link to="/recipes" className="flex items-center text-blue-500 hover:text-blue-700 mb-6 transition">
           <ArrowLeft className="h-5 w-5 mr-1" />
           Back to recipes
         </Link>

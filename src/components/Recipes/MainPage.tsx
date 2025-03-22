@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
+import { Link } from 'react-router-dom';
 import { Clock, Star } from 'lucide-react';
 import { Recipe, sampleRecipes } from './schema';
 import Navbar from '../NavBar/navbar';
@@ -92,7 +92,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
   const totalTime = recipe.prepTime + recipe.cookTime;
 
   return (
-    <Link href={`/recipes/${recipe.id}`}>
+    <Link to={`/recipes/${recipe.id}`}>
       <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer h-full flex flex-col">
         <img 
           src={recipe.imageUrl} 
