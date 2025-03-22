@@ -383,15 +383,6 @@ const LandingPage = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-slate-300 tracking-wider uppercase">Company</h3>
-              <ul className="mt-4 space-y-4">
-                <li><Link to="/about" className="text-base text-slate-400 hover:text-slate-300">About</Link></li>
-                <li><Link to="/jobs" className="text-base text-slate-400 hover:text-slate-300">Jobs</Link></li>
-                <li><Link to="/press" className="text-base text-slate-400 hover:text-slate-300">Press</Link></li>
-                <li><Link to="/partners" className="text-base text-slate-400 hover:text-slate-300">Partners</Link></li>
-              </ul>
-            </div>
-            <div>
               <h3 className="text-sm font-semibold text-slate-300 tracking-wider uppercase">Resources</h3>
               <ul className="mt-4 space-y-4">
                 <li><Link to="/docs" className="text-base text-slate-400 hover:text-slate-300">Documentation</Link></li>

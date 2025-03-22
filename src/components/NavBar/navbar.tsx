@@ -64,6 +64,9 @@ const Navbar = ({ activePage = "home" }) => {
                 <Link to="/calc" className={`${activePage === "calc" ? "border-blue-500 text-blue-500" : "border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700"} border-b-2 px-1 pt-1 text-sm font-medium ${discoMode ? 'text-white border-white hover:text-white hover:border-white' : ''}`}>
                   Mortgage Calculator
                 </Link>
+                <Link to="/flipper"   className={`${activePage === "" ? "border-blue-500 text-blue-500" : "border-transparent text-slate-600 hover:border-orange-500 hover:text-slate-700"} border-b-2 px-1 pt-1 text-sm font-medium ${discoMode ? 'text-white border-white hover:text-white hover:border-white' : ''}`}>
+                  Flipper
+                </Link>
                 <Link to="/money" className={`${activePage === "money" ? "border-blue-500 text-blue-500" : "border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-700"} border-b-2 px-1 pt-1 text-sm font-medium ${discoMode ? 'text-white border-white hover:text-white hover:border-white' : ''}`}>
                   Money Visualize
                 </Link>

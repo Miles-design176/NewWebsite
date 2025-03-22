@@ -19,6 +19,8 @@ import DownloadPage from "./components/Multi-Download Page";
 import Money from "./components/Money-Visualizer";
 import Features from "./components/Features";
 import Pricing from "./components/Pricing";
+import FlipperProjects from "./components/FlipperZeroPage/FlipperProjects";
+import TemperaryDownloadPage from "./components/FlipperZeroPage/DownloadPage";
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
         <Route path="Money" element={<Money />} />
         <Route path="Features" element={<Features />} />
         <Route path="Pricing" element={<Pricing />} />
+        <Route path="flipper" element={<FlipperProjects />} />
+        <Route path="/download" element={<TemperaryDownloadPage />} />
       </Routes>
     </Router>
   );
