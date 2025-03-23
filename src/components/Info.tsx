@@ -57,7 +57,7 @@ const FeaturesPage = () => {
                 <p className="text-slate-600 mb-4">
                   Challenge your word skills with Wordit! Guess the daily word or try random words. A fun, fast-paced game with unique animations and interactive gameplay.
                 </p>
-                <a href="/wordit/">
+                <a href="/Wordit/">
                   <Button variant="default" className="w-full bg-slate-700 hover:bg-slate-800 text-white border-slate-700">
                     Play Now
                   </Button>
