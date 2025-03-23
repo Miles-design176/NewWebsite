@@ -57,7 +57,7 @@ const FeaturesPage = () => {
                 <p className="text-slate-600 mb-4">
                   Challenge your word skills with Wordit! Guess the daily word or try random words. A fun, fast-paced game with unique animations and interactive gameplay.
                 </p>
-                <a href="/Wordit/">
+                <a href="/wordit/">
                   <Button variant="default" className="w-full bg-slate-700 hover:bg-slate-800 text-white border-slate-700">
                     Play Now
                   </Button>
@@ -189,7 +189,7 @@ const FeaturesPage = () => {
                 <p className="text-slate-600 mb-4">
                   Pong is a classic arcade game where players control paddles to bounce a ball back and forth, aiming to score points by getting the ball past their opponent.
                 </p>
-                <a href="/Pong/">
+                <a href="/pong/">
                   <Button variant="default" className="w-full bg-slate-700 hover:bg-slate-800 text-white border-slate-700">
                     Play Now
                   </Button>
