@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -136,6 +137,18 @@ const LandingPage = () => {
   }, []);
 
   return (
+    
+    <>
+    <Helmet>
+      <meta name="description" content="Welcome to Best Website, the only website that's technically a website! Enjoy some jokes, features, and more." />
+      <meta name="og:title" content="Best Website" />
+      <meta name="og:description" content="Welcome to Best Website, the only website that's technically a website! Enjoy some jokes, features, and more." />
+      <meta name="og:url" content="https://bestwebsite.ca" />
+      <meta name="og:image" content="https://bestwebsite.ca/logo192.png" /> {/* Using logo192 */}
+      <link rel="icon" href="/favicon.ico" />
+      <title>Best Website - The Only Website That's Technically a Website</title>
+    </Helmet>
+
     <div className="min-h-screen flex flex-col bg-slate-50">
       <Navbar activePage="home" />
       <main className="flex-1">
@@ -432,6 +445,7 @@ const LandingPage = () => {
 
       {/* Animations are defined in index.css */}
     </div>
+    </>
   );
 };
 
