@@ -19,7 +19,10 @@ body {
     width: 70%;
     font-size: 1.9vw;
 }
-
+img {
+    user-drag: none; /* Disables dragging on images */
+    -webkit-user-drag: none; /* For WebKit browsers like Chrome, Safari */
+}
 #container {
     display: table-cell;
     vertical-align: middle;
