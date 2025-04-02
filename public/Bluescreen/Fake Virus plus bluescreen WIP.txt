@@ -1,8 +1,0 @@
-REM Fake Virus and Bluescreen
-REM Made by: Milis
-REM Opens a fake virus alert using mshta and brings you to a website with windows bluescreen that never reaches 100%
-DELAY 500
-GUI R
-STRING mshta "javascript:var objShell = new ActiveXObject('WScript.Shell'); objShell.Popup('WARNING: Your computer has been infected with a virus. System compromised!', 10, 'Virus Alert', 48);window.close();"
-STRING
-
