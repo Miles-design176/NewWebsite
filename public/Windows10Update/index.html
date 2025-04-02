@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake BSOD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="page">
+        <div id="container">
+            <h1>:(</h1>
+            <h2>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</h2>
+            <h2><span id="percentage">0</span>% complete</h2>
+            <div id="details">
+                <div id="qr">
+                    <div id="image">
+                        <img src="http://xontab.com/experiments/Javascript/BSOD/qr.png" alt="QR Code">
+                    </div>
+                </div>
+                <div id="stopcode">
+                    <h4>For more information about this issue and possible fixes, visit<br>
+                        <a href="http://xontab.com/stopcode" target="_blank">http://xontab.com/stopcode</a></h4>
+                    <h5>If you call a support person, give them this info:<br>Stop Code: 404 PAGE NOT FOUND</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Disable Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                event.preventDefault(); // Prevent default Escape action
+            }
+        });
+
+        // Disable F11 key (fullscreen)
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'F11') {
+                event.preventDefault(); // Prevent default F11 action (fullscreen toggle)
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

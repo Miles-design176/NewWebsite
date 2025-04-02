@@ -23,6 +23,8 @@ import FlipperProjects from "./components/FlipperZeroPage/FlipperProjects";
 import TemperaryDownloadPage from "./components/FlipperZeroPage/DownloadPage";
 import Recipes from "./components/Recipes/MainPage";
 import RecipeDetails from "./components/Recipes/RecipeDetail";
+import BoardGame from "./components/FrenchRevulotionGame";
+import FakeRansomware from "./components/Funware";
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
         <Route path="/download" element={<TemperaryDownloadPage />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipes/:id" element={<RecipeDetails />} />
+        <Route path="/boardgame" element={<BoardGame />} />
+        <Route path="/Prankware" element={<FakeRansomware />} />
       </Routes>
     </Router>
   );
