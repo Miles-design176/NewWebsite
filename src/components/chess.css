@@ -81,18 +81,25 @@
   bottom: 0.25rem;
 }
 
-.chess-cell.selected {
-  ring: 4px solid rgb(34 197 94); /* green-500 equivalent */
-  z-index: 10;
-}
-
 .chess-cell.valid-move {
-  outline: 4px solid rgb(59 130 246);
+  position: relative;
   z-index: 10;
 }
 
-.chess-cell.valid-move:hover {
-  outline-color: rgb(37, 99, 235); /* Slightly darker blue on hover */
+.chess-cell.valid-move::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black circle */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chess-cell.valid-move:hover::after {
+  background-color: rgba(0, 0, 0, 0.5); /* Darker circle on hover */
 }
 
 /* Captured pieces styling */

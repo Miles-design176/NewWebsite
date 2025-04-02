@@ -30,7 +30,7 @@ export interface Choice {
 export interface Question {
   id: string;
   text: string;
-  type: 'multiple-choice' | 'long-answer';
+  type: 'multiple-choice' | 'long-answer' | 'short-answer';
   choices?: Choice[];
   correctAnswer?: string;
   difficulty: 'easy' | 'medium' | 'hard';
@@ -327,196 +327,311 @@ const questions: Question[] = [
   // Multiple choice questions
   {
     id: 'q1',
-    text: 'When did the French Revolution begin?',
+    text: 'What was Marie Antoinette\'s role in the French Revolution?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q1-a', text: '1776', isCorrect: false },
-      { id: 'q1-b', text: '1789', isCorrect: true },
-      { id: 'q1-c', text: '1799', isCorrect: false },
-      { id: 'q1-d', text: '1804', isCorrect: false }
+      { id: 'q1-a', text: 'She ordered for the people to be killed.', isCorrect: false },
+      { id: 'q1-b', text: 'She was a symbol of the monarchy\'s excesses and was a figure of popular hatred.', isCorrect: true },
+      { id: 'q1-c', text: 'She was a symbol of power and the people rejected her.', isCorrect: false },
+      { id: 'q1-d', text: 'She was rejected by the people resulting in her spending all of their money.', isCorrect: false }
     ],
-    difficulty: 'easy'
+    difficulty: 'medium'
   },
   {
     id: 'q2',
-    text: 'Which of the following events marked the start of the French Revolution?',
+    text: 'What year did the French Revolution begin?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q2-a', text: 'The execution of Louis XVI', isCorrect: false },
-      { id: 'q2-b', text: 'The Women\'s March on Versailles', isCorrect: false },
-      { id: 'q2-c', text: 'The Storming of the Bastille', isCorrect: true },
-      { id: 'q2-d', text: 'The Tennis Court Oath', isCorrect: false }
+      { id: 'q2-a', text: '1786', isCorrect: false },
+      { id: 'q2-b', text: '1787', isCorrect: false },
+      { id: 'q2-c', text: '1789', isCorrect: true },
+      { id: 'q2-d', text: '1783', isCorrect: false }
     ],
     difficulty: 'easy'
   },
   {
     id: 'q3',
-    text: 'What was the Reign of Terror?',
+    text: 'What year did the French Revolution end?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q3-a', text: 'A period of economic depression in France', isCorrect: false },
-      { id: 'q3-b', text: 'A period of mass executions and repression', isCorrect: true },
-      { id: 'q3-c', text: 'A civil war between revolutionary factions', isCorrect: false },
-      { id: 'q3-d', text: 'The rule of Napoleon Bonaparte', isCorrect: false }
+      { id: 'q3-a', text: '1797', isCorrect: false },
+      { id: 'q3-b', text: '1799', isCorrect: true },
+      { id: 'q3-c', text: '1800', isCorrect: false },
+      { id: 'q3-d', text: '1802', isCorrect: false }
     ],
-    difficulty: 'easy'
+    difficulty: 'medium'
   },
   {
     id: 'q4',
-    text: 'What famous phrase is misattributed to Marie Antoinette?',
+    text: 'Who ruled France during the French Revolution?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q4-a', text: '"Let them eat cake"', isCorrect: true },
-      { id: 'q4-b', text: '"After me, the flood"', isCorrect: false },
-      { id: 'q4-c', text: '"Liberty, Equality, Fraternity"', isCorrect: false },
-      { id: 'q4-d', text: '"The revolution devours its children"', isCorrect: false }
+      { id: 'q4-a', text: 'King Louis XIV', isCorrect: false },
+      { id: 'q4-b', text: 'King Louis XV', isCorrect: false },
+      { id: 'q4-c', text: 'King Louis XVI', isCorrect: true },
+      { id: 'q4-d', text: 'King Louis XVII', isCorrect: false }
     ],
     difficulty: 'easy'
   },
   {
     id: 'q5',
-    text: 'What was the Committee of Public Safety?',
+    text: 'What caused the French Revolution?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q5-a', text: 'A fire brigade to combat arson in Paris', isCorrect: false },
-      { id: 'q5-b', text: 'A medical committee addressing the plague', isCorrect: false },
-      { id: 'q5-c', text: 'The de facto executive government during the Reign of Terror', isCorrect: true },
-      { id: 'q5-d', text: 'A group that ensured food safety in markets', isCorrect: false }
+      { id: 'q5-a', text: 'Industrial Revolution', isCorrect: false },
+      { id: 'q5-b', text: 'Rise of Napoleon', isCorrect: false },
+      { id: 'q5-c', text: 'Not enough food', isCorrect: false },
+      { id: 'q5-d', text: 'Economic crisis and inequality', isCorrect: true }
     ],
     difficulty: 'medium'
   },
   {
     id: 'q6',
-    text: 'What was the Declaration of the Rights of Man and of the Citizen?',
+    text: 'What type of government was established after the monarchy?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q6-a', text: 'A manifesto calling for the overthrow of the monarchy', isCorrect: false },
-      { id: 'q6-b', text: 'A fundamental document of the French Revolution defining rights', isCorrect: true },
-      { id: 'q6-c', text: 'A peace treaty between France and Austria', isCorrect: false },
-      { id: 'q6-d', text: 'A list of grievances presented to Louis XVI', isCorrect: false }
+      { id: 'q6-a', text: 'Monarchy', isCorrect: false },
+      { id: 'q6-b', text: 'Dictatorship', isCorrect: false },
+      { id: 'q6-c', text: 'A Colony', isCorrect: false },
+      { id: 'q6-d', text: 'Republic', isCorrect: true }
     ],
-    difficulty: 'medium'
+    difficulty: 'easy'
   },
   {
     id: 'q7',
-    text: 'What was the main purpose of the National Assembly formed in 1789?',
+    text: 'Who eventually took power in France after the French Revolution?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q7-a', text: 'To execute the king and queen', isCorrect: false },
-      { id: 'q7-b', text: 'To write a constitution for France', isCorrect: true },
-      { id: 'q7-c', text: 'To establish trade with America', isCorrect: false },
-      { id: 'q7-d', text: 'To organize military defense against other European powers', isCorrect: false }
+      { id: 'q7-a', text: 'Maximilien Robespierre', isCorrect: false },
+      { id: 'q7-b', text: 'Louis XVIII', isCorrect: false },
+      { id: 'q7-c', text: 'Charles X', isCorrect: false },
+      { id: 'q7-d', text: 'Napoleon Bonaparte', isCorrect: true }
     ],
     difficulty: 'medium'
   },
   {
     id: 'q8',
-    text: 'Who led the radical Jacobin faction during the Revolution?',
+    text: 'Which king was removed from power during the French Revolution?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q8-a', text: 'Napoleon Bonaparte', isCorrect: false },
-      { id: 'q8-b', text: 'Jacques Necker', isCorrect: false },
-      { id: 'q8-c', text: 'Maximilien Robespierre', isCorrect: true },
-      { id: 'q8-d', text: 'Louis XVI', isCorrect: false }
+      { id: 'q8-a', text: 'Louis XIV', isCorrect: false },
+      { id: 'q8-b', text: 'Louis XV', isCorrect: false },
+      { id: 'q8-c', text: 'Napoleon', isCorrect: false },
+      { id: 'q8-d', text: 'Louis XVI', isCorrect: true }
     ],
-    difficulty: 'medium'
+    difficulty: 'easy'
   },
   {
     id: 'q9',
-    text: 'What were the Three Estates in pre-revolutionary France?',
+    text: 'What was the name of the prison stormed on July 14, 1789?',
     type: 'multiple-choice',
     choices: [
-      { id: 'q9-a', text: 'Clergy, Nobility, and Commons', isCorrect: true },
-      { id: 'q9-b', text: 'King, Queen, and Royal Family', isCorrect: false },
-      { id: 'q9-c', text: 'Executive, Legislative, and Judicial', isCorrect: false },
-      { id: 'q9-d', text: 'Army, Navy, and Air Force', isCorrect: false }
+      { id: 'q9-a', text: 'Louvre', isCorrect: false },
+      { id: 'q9-b', text: 'Versailles', isCorrect: false },
+      { id: 'q9-c', text: 'Notre-Dame', isCorrect: false },
+      { id: 'q9-d', text: 'Bastille', isCorrect: true }
+    ],
+    difficulty: 'easy'
+  },
+  {
+    id: 'q10',
+    text: 'Who was the queen of France before the Revolution?',
+    type: 'multiple-choice',
+    choices: [
+      { id: 'q10-a', text: 'Joan of Arc', isCorrect: false },
+      { id: 'q10-b', text: 'Catherine the Great', isCorrect: false },
+      { id: 'q10-c', text: 'Elizabeth I', isCorrect: false },
+      { id: 'q10-d', text: 'Marie Antoinette', isCorrect: true }
+    ],
+    difficulty: 'easy'
+  },
+  {
+    id: 'q11',
+    text: 'What did people demand during the Revolution?',
+    type: 'multiple-choice',
+    choices: [
+      { id: 'q11-a', text: 'More power for the king', isCorrect: false },
+      { id: 'q11-b', text: 'A bigger army', isCorrect: false },
+      { id: 'q11-c', text: 'More taxes', isCorrect: false },
+      { id: 'q11-d', text: 'Freedom and equality', isCorrect: true }
+    ],
+    difficulty: 'easy'
+  },
+  {
+    id: 'q12',
+    text: 'Which of the following events marked the start of the French Revolution?',
+    type: 'multiple-choice',
+    choices: [
+      { id: 'q12-a', text: 'The execution of Louis XVI', isCorrect: false },
+      { id: 'q12-b', text: 'The Women\'s March on Versailles', isCorrect: false },
+      { id: 'q12-c', text: 'The Tennis Court Oath', isCorrect: false },
+      { id: 'q12-d', text: 'The Storming of the Bastille', isCorrect: true }
     ],
     difficulty: 'medium'
   },
   {
-    id: 'q10',
-    text: 'What was the Directory?',
-    type: 'multiple-choice',
-    choices: [
-      { id: 'q10-a', text: 'A revolutionary encyclopedia', isCorrect: false },
-      { id: 'q10-b', text: 'The government that ruled France from 1795-1799', isCorrect: true },
-      { id: 'q10-c', text: 'A list of enemies of the revolution', isCorrect: false },
-      { id: 'q10-d', text: 'The royal calendar', isCorrect: false }
-    ],
-    difficulty: 'hard'
-  },
-  {
-    id: 'q11',
-    text: 'What was the sans-culottes?',
-    type: 'multiple-choice',
-    choices: [
-      { id: 'q11-a', text: 'The radical working-class revolutionaries', isCorrect: true },
-      { id: 'q11-b', text: 'Aristocrats who supported the revolution', isCorrect: false },
-      { id: 'q11-c', text: 'The royal guards', isCorrect: false },
-      { id: 'q11-d', text: 'Revolutionary soldiers without uniforms', isCorrect: false }
-    ],
-    difficulty: 'hard'
-  },
-  {
-    id: 'q12',
-    text: 'What was the Thermidorian Reaction?',
-    type: 'multiple-choice',
-    choices: [
-      { id: 'q12-a', text: 'A chemical experiment that caused an explosion in Paris', isCorrect: false },
-      { id: 'q12-b', text: 'A counter-revolution that ended the Reign of Terror', isCorrect: true },
-      { id: 'q12-c', text: 'A heat wave that caused crop failures', isCorrect: false },
-      { id: 'q12-d', text: 'A new calendar system introduced during the Revolution', isCorrect: false }
-    ],
-    difficulty: 'hard'
-  },
-  
-  // Long answer questions
-  {
     id: 'q13',
-    text: 'Explain the political, economic, and social causes of the French Revolution. What conditions in pre-revolutionary France led to this major historical event?',
-    type: 'long-answer',
-    correctAnswer: 'The French Revolution was caused by a combination of political, economic, and social factors. Politically, France had an absolute monarchy with no checks on royal power. Economically, the country faced severe financial difficulties due to involvement in expensive wars and a regressive tax system where the poorest paid the most. Socially, the rigid class system with privileged nobility and clergy created resentment among the bourgeoisie and peasantry. The influence of Enlightenment ideas about liberty and equality, combined with food shortages and high bread prices, created the perfect conditions for revolution.',
+    text: 'What was the Reign of Terror?',
+    type: 'multiple-choice',
+    choices: [
+      { id: 'q13-a', text: 'A period of economic depression in France', isCorrect: false },
+      { id: 'q13-b', text: 'A civil war between revolutionary factions', isCorrect: false },
+      { id: 'q13-c', text: 'The rule of Napoleon Bonaparte', isCorrect: false },
+      { id: 'q13-d', text: 'A period of mass executions and repression', isCorrect: true }
+    ],
     difficulty: 'medium'
   },
   {
     id: 'q14',
-    text: 'How did the Reign of Terror impact French society and the course of the Revolution? Was it justified?',
-    type: 'long-answer',
-    correctAnswer: 'The Reign of Terror (1793-1794) was characterized by mass executions and widespread repression. Led by Robespierre and the Committee of Public Safety, it sought to purge counter-revolutionary elements during a time of war and internal rebellion. Approximately 17,000 people were officially executed, with many more dying in prison. The Terror fundamentally changed the Revolution from seeking liberty to imposing radical republican virtue through violence. It unified France under revolutionary government but created lasting trauma and eventually led to a conservative reaction. Whether justified is debatable - supporters argue it saved the Revolution from external and internal threats, while critics see it as betraying the very principles of liberty and human rights that the Revolution claimed to uphold.',
+    text: 'What was the Committee of Public Safety?',
+    type: 'multiple-choice',
+    choices: [
+      { id: 'q14-a', text: 'A fire brigade to combat arson in Paris', isCorrect: false },
+      { id: 'q14-b', text: 'A medical committee addressing the plague', isCorrect: false },
+      { id: 'q14-c', text: 'A group that ensured food safety in markets', isCorrect: false },
+      { id: 'q14-d', text: 'The de facto executive government during the Reign of Terror', isCorrect: true }
+    ],
     difficulty: 'hard'
   },
   {
     id: 'q15',
+    text: 'What was the main purpose of the National Assembly formed in 1789?',
+    type: 'multiple-choice',
+    choices: [
+      { id: 'q15-a', text: 'To execute the king and queen', isCorrect: false },
+      { id: 'q15-b', text: 'To establish trade with America', isCorrect: false },
+      { id: 'q15-c', text: 'To organize military defense against other European powers', isCorrect: false },
+      { id: 'q15-d', text: 'To write a constitution for France', isCorrect: true }
+    ],
+    difficulty: 'medium'
+  },
+  
+  // Written answer questions
+  {
+    id: 'q16',
+    text: 'What was king Louis XIV\'s full name?',
+    type: 'short-answer',
+    correctAnswer: 'Louis Dieudonne',
+    difficulty: 'medium'
+  },
+  {
+    id: 'q17',
+    text: 'What was the main cause that started the Revolution?',
+    type: 'short-answer',
+    correctAnswer: 'The main cause of the French Revolution was the financial crisis due to government debt, unfair taxation, and economic inequality between the estates',
+    difficulty: 'medium'
+  },
+  {
+    id: 'q18',
+    text: 'How did the execution of Louis XVI impact France?',
+    type: 'short-answer',
+    correctAnswer: 'The execution of Louis XVI on January 21, 1793, marked a pivotal moment in the French Revolution, symbolizing the end of the monarchy and ushering in a period of radical change and instability, including the Reign of Terror.',
+    difficulty: 'medium'
+  },
+  {
+    id: 'q19',
+    text: 'During the French Revolution, how many people were Beheaded?',
+    type: 'short-answer',
+    correctAnswer: '17,000 people',
+    difficulty: 'medium'
+  },
+  {
+    id: 'q20',
+    text: 'How did the execution of Louis XVI impact France?',
+    type: 'short-answer',
+    correctAnswer: 'The execution of Louis XVI on January 21, 1793, marked a turning point in the French Revolution, solidifying the radical phase and intensifying internal and external conflicts. Within France, it eliminated any hope of restoring the monarchy and deepened divisions between revolutionaries and royalist supporters. The event also fueled the Reign of Terror, as the revolutionary government, led by the Jacobins, sought to eliminate perceived enemies of the Republic. Internationally, the execution shocked European monarchies, leading to the formation of the First Coalition, a military alliance against France that plunged the nation into further war. Ultimately, the king\'s execution symbolized the triumph of the Republic but also contributed to the instability that eventually led to Napoleon\'s rise to power.',
+    difficulty: 'hard'
+  },
+  {
+    id: 'q21',
+    text: 'What prison was stormed on July 14, 1789?',
+    type: 'short-answer',
+    correctAnswer: 'Bastille',
+    difficulty: 'easy'
+  },
+  {
+    id: 'q22',
+    text: 'What device was used for executions during the Reign of Terror?',
+    type: 'short-answer',
+    correctAnswer: 'Guillotine',
+    difficulty: 'easy'
+  },
+  {
+    id: 'q23',
+    text: 'What queen was executed during the Revolution?',
+    type: 'short-answer',
+    correctAnswer: 'Marie Antoinette',
+    difficulty: 'easy'
+  },
+  {
+    id: 'q24',
+    text: 'What military leader took power after the revolution?',
+    type: 'short-answer',
+    correctAnswer: 'Napoleon Bonaparte',
+    difficulty: 'easy'
+  },
+  {
+    id: 'q25',
+    text: 'Who was most affected during the French revolution?',
+    type: 'short-answer',
+    correctAnswer: 'Peasants and Urban workers',
+    difficulty: 'medium'
+  },
+  {
+    id: 'q26',
+    text: 'What was Louis XVI\'s fate?',
+    type: 'short-answer',
+    correctAnswer: 'Execution by guillotine',
+    difficulty: 'easy'
+  },
+  {
+    id: 'q27',
+    text: 'What European country declared war on France during the revolution?',
+    type: 'short-answer',
+    correctAnswer: 'Austria',
+    difficulty: 'medium'
+  },
+  {
+    id: 'q28',
+    text: 'When was Marie Antoinette executed?',
+    type: 'short-answer',
+    correctAnswer: 'October 16, 1793',
+    difficulty: 'medium'
+  },
+  {
+    id: 'q29',
+    text: 'What type of government replaced the monarchy?',
+    type: 'short-answer',
+    correctAnswer: 'Republic',
+    difficulty: 'easy'
+  },
+  
+  // Long answer questions
+  {
+    id: 'q30',
+    text: 'Explain the political, economic, and social causes of the French Revolution. What conditions in pre-revolutionary France led to this major historical event?',
+    type: 'long-answer',
+    correctAnswer: 'The French Revolution was caused by a combination of political, economic, and social factors. Politically, France had an absolute monarchy with no checks on royal power. Economically, the country faced severe financial difficulties due to involvement in expensive wars and a regressive tax system where the poorest paid the most. Socially, the rigid class system with privileged nobility and clergy created resentment among the bourgeoisie and peasantry. The influence of Enlightenment ideas about liberty and equality, combined with food shortages and high bread prices, created the perfect conditions for revolution.',
+    difficulty: 'hard'
+  },
+  {
+    id: 'q31',
     text: 'Compare and contrast the different phases of the French Revolution from 1789 to Napoleon\'s rise to power. How did the goals and character of the Revolution change over time?',
     type: 'long-answer',
     correctAnswer: 'The French Revolution progressed through several distinct phases. It began in 1789 with a liberal, reform-oriented phase focused on constitutional monarchy and enlightenment principles, exemplified by the Declaration of Rights of Man. By 1792-93, it entered a more radical phase with the execution of the king, establishment of the Republic, and increased popular participation. The radical phase peaked during the Terror (1793-94) when Robespierre and the Jacobins imposed revolutionary virtue through violence. After Thermidor (1794), a more conservative reaction set in with the Directory government, weakening revolutionary zeal while preserving some reforms. Finally, Napoleon\'s 1799 coup ended the Revolution proper but consolidated many of its reforms while abandoning its democratic aspects. The Revolution thus transformed from seeking liberal constitutional reform to radical democracy, then to pragmatic authoritarianism that preserved social reforms while abandoning political liberty.',
     difficulty: 'hard'
   },
   {
-    id: 'q16',
-    text: 'Discuss the role of women in the French Revolution. How did they participate, and in what ways were they excluded?',
-    type: 'long-answer',
-    correctAnswer: 'Women played crucial roles in the French Revolution despite being denied formal political rights. They participated as activists, particularly in the Women\'s March on Versailles in October 1789, which forced the royal family to return to Paris. Women formed political clubs like the Society of Revolutionary Republican Women and notable figures such as Olympe de Gouges advocated for women\'s rights, publishing the "Declaration of the Rights of Woman." However, revolutionary governments ultimately excluded women from political equality. The Jacobins closed women\'s clubs in 1793, and the Napoleonic Code later codified women\'s legal subordination. The Revolution\'s universal principles of liberty and equality stopped short of gender equality, revealing the limitations of revolutionary ideals in practice.',
-    difficulty: 'medium'
-  },
-  {
-    id: 'q17',
-    text: 'How did the French Revolution influence revolutionary movements and political developments in other countries during the late 18th and 19th centuries?',
-    type: 'long-answer',
-    correctAnswer: 'The French Revolution became a powerful model for revolutionary movements worldwide. It inspired the Haitian Revolution (1791-1804), the first successful slave revolt creating an independent state. In Europe, it catalyzed movements for constitutional government and nationalism, influencing the 1848 revolutions across the continent. Latin American independence movements, led by figures like Simón Bolívar, drew on French revolutionary principles. The Revolution\'s language of rights, liberty, and equality provided a vocabulary for oppressed groups globally. However, its descent into violence also served as a cautionary tale, with conservatives using the Terror to argue against rapid political change. The Revolution thus became both inspiration and warning, shaping political debates about democracy, rights, and the pace of change throughout the 19th century and beyond.',
-    difficulty: 'hard'
-  },
-  {
-    id: 'q18',
+    id: 'q32',
     text: 'Evaluate the legacy of the French Revolution. How did it transform France and what lasting impact did it have on modern political thought and institutions?',
     type: 'long-answer',
     correctAnswer: 'The French Revolution permanently transformed France by abolishing feudalism, weakening aristocratic power, and establishing the principle of equality before the law. It introduced modern secular civic institutions and established the metric system. More broadly, it fundamentally altered political thinking by demonstrating that established monarchies could be overthrown by popular movements. It popularized concepts of citizenship, civil liberties, and sovereignty of the people that remain foundational to modern democracies. The revolutionary division between left and right political orientations continues to structure political discourse. However, the Revolution\'s legacy remains complex and contested, with debates continuing about whether its contribution to modern politics should emphasize its democratic aspirations, its violent excesses, or its nation-building aspects. Despite these debates, the Revolution unquestionably marks the birth of modern political culture.',
-    difficulty: 'medium'
+    difficulty: 'hard'
   }
 ];
 
 // Function to get a random question based on difficulty
-const getRandomQuestion = (difficulty: 'easy' | 'medium' | 'hard', type: 'multiple-choice' | 'long-answer'): Question => {
+const getRandomQuestion = (difficulty: 'easy' | 'medium' | 'hard', type: 'multiple-choice' | 'long-answer' | 'short-answer'): Question => {
   const filteredQuestions = questions.filter(q => q.difficulty === difficulty && q.type === type);
   
   if (filteredQuestions.length === 0) {
@@ -530,24 +645,31 @@ const getRandomQuestion = (difficulty: 'easy' | 'medium' | 'hard', type: 'multip
 
 // Function to get a question based on piece type
 const getQuestionForPiece = (pieceType: string): Question => {
-  let questionType: 'multiple-choice' | 'long-answer' = 'multiple-choice';
+  let questionType: 'multiple-choice' | 'long-answer' | 'short-answer' = 'multiple-choice';
   let difficulty: 'easy' | 'medium' | 'hard' = 'easy';
   
   // Determine question type and difficulty based on piece type
-  if (pieceType === 'pawn') {
-    questionType = 'multiple-choice';
+  if (pieceType === 'pawn') { 
+    // For pawns, randomly select between short-answer and multiple-choice
+    questionType = Math.random() > 0.5 ? 'multiple-choice' : 'short-answer';
     difficulty = 'easy';
   } else if (pieceType === 'knight' || pieceType === 'bishop') {
-    questionType = 'multiple-choice';
+    // For knights and bishops, randomly select between all three question types
+    const rand = Math.random();
+    questionType = rand < 0.33 ? 'multiple-choice' : (rand < 0.66 ? 'short-answer' : 'long-answer');
     difficulty = 'medium';
   } else if (pieceType === 'rook') {
-    questionType = Math.random() > 0.5 ? 'multiple-choice' : 'long-answer';
+    // For rooks, randomly select between all three question types
+    const rand = Math.random();
+    questionType = rand < 0.33 ? 'multiple-choice' : (rand < 0.66 ? 'short-answer' : 'long-answer');
     difficulty = 'medium';
   } else if (pieceType === 'queen') {
-    questionType = 'long-answer';
+    // For queens, randomly select between short-answer and long-answer
+    questionType = Math.random() > 0.5 ? 'long-answer' : 'short-answer';
     difficulty = 'medium';
   } else if (pieceType === 'king') {
-    questionType = 'long-answer';
+    // For kings, primarily long-answer with a small chance of short-answer
+    questionType = Math.random() > 0.25 ? 'long-answer' : 'short-answer';
     difficulty = 'hard';
   }
   
@@ -1524,6 +1646,7 @@ interface QuestionPanelProps {
 const QuestionPanel: React.FC<QuestionPanelProps> = ({ question, onAnswer, onClose }) => {
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [longAnswer, setLongAnswer] = useState('');
+  const [shortAnswer, setShortAnswer] = useState('');
   
   if (!question) return null;
   
@@ -1537,6 +1660,87 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ question, onAnswer, onClo
       const minWords = 10;
       const wordCount = longAnswer.trim().split(/\s+/).length;
       onAnswer(wordCount >= minWords);
+    } else if (question.type === 'short-answer' && shortAnswer.trim()) {
+      // For short answers, we'll use a smaller minimum word count
+      const minWords = 1;
+      const maxWords = 5;
+      const wordCount = shortAnswer.trim().split(/\s+/).length;
+      onAnswer(wordCount >= minWords && wordCount <= maxWords);
+    }
+  };
+  
+  const renderQuestionContent = () => {
+    switch(question.type) {
+      case 'multiple-choice':
+        return (
+          <div className="space-y-3 mb-6 bg-amber-50 p-4 rounded-lg border-l-4 border-amber-500">
+            <div className="flex items-center mb-2">
+              <span className="text-xl mr-2">🔄</span>
+              <h3 className="font-semibold text-amber-800">Select the best answer:</h3>
+            </div>
+            {question.choices?.map(choice => (
+              <div 
+                key={choice.id}
+                className={`p-3 border rounded cursor-pointer ${
+                  selectedChoice === choice.id ? 'bg-amber-200 border-amber-500' : 'hover:bg-amber-100'
+                }`}
+                onClick={() => setSelectedChoice(choice.id)}
+              >
+                {choice.text}
+              </div>
+            ))}
+          </div>
+        );
+        
+      case 'short-answer':
+        return (
+          <div className="mb-6 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+            <div className="flex items-center mb-2">
+              <span className="text-xl mr-2">⚡</span>
+              <h3 className="font-semibold text-blue-800">Quick Response:</h3>
+            </div>
+            <textarea
+              className="w-full h-20 p-3 border rounded resize-none border-blue-200 focus:border-blue-500 focus:ring focus:ring-blue-200"
+              placeholder="Write a brief answer (1-5 words)..."
+              value={shortAnswer}
+              onChange={(e) => setShortAnswer(e.target.value)}
+            />
+            <p className="text-sm text-blue-600 mt-1">Keep it concise - just a few words needed.</p>
+          </div>
+        );
+        
+      case 'long-answer':
+        return (
+          <div className="mb-6 bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+            <div className="flex items-center mb-2">
+              <span className="text-xl mr-2">📝</span>
+              <h3 className="font-semibold text-green-800">Detailed Response:</h3>
+            </div>
+            <textarea
+              className="w-full h-40 p-3 border rounded resize-none border-green-200 focus:border-green-500 focus:ring focus:ring-green-200"
+              placeholder="Write your detailed answer here (minimum 10 words)..."
+              value={longAnswer}
+              onChange={(e) => setLongAnswer(e.target.value)}
+            />
+            <p className="text-sm text-green-600 mt-1">Provide a thorough explanation with at least 10 words.</p>
+          </div>
+        );
+        
+      default:
+        return null;
+    }
+  };
+  
+  const isSubmitDisabled = () => {
+    switch(question.type) {
+      case 'multiple-choice':
+        return !selectedChoice;
+      case 'short-answer':
+        return shortAnswer.trim().length === 0;
+      case 'long-answer':
+        return longAnswer.trim().split(/\s+/).length < 10;
+      default:
+        return true;
     }
   };
   
@@ -1546,28 +1750,7 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ question, onAnswer, onClo
         <h2 className="text-2xl font-bold mb-4">Historical Challenge!</h2>
         <p className="text-lg mb-6">{question.text}</p>
         
-        {question.type === 'multiple-choice' ? (
-          <div className="space-y-3 mb-6">
-            {question.choices?.map(choice => (
-              <div 
-                key={choice.id}
-                className={`p-3 border rounded cursor-pointer ${
-                  selectedChoice === choice.id ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'
-                }`}
-                onClick={() => setSelectedChoice(choice.id)}
-              >
-                {choice.text}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <textarea
-            className="w-full h-40 p-3 border rounded resize-none"
-            placeholder="Write your answer here (minimum 10 words)..."
-            value={longAnswer}
-            onChange={(e) => setLongAnswer(e.target.value)}
-          />
-        )}
+        {renderQuestionContent()}
         
         <div className="flex justify-between mt-4">
           <button
@@ -1579,8 +1762,7 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ question, onAnswer, onClo
           <button
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             onClick={handleSubmit}
-            disabled={(question.type === 'multiple-choice' && !selectedChoice) || 
-                    (question.type === 'long-answer' && longAnswer.trim().length < 10)}
+            disabled={isSubmitDisabled()}
           >
             Submit Answer
           </button>
@@ -1625,17 +1807,17 @@ const GameInfo: React.FC<GameInfoProps> = ({
             : `Current Player: ${currentPlayer === 'white' ? 'Revolutionaries' : 'Royalists'}`}
         </h2>
         
-        {/* Score display */}
-        <div className="score-display">
-          <div className="score-box">
-            <div className="score-label text-black font-bold">Revolutionaries</div>
-            <div className="score-value text-black">{whiteScore}</div>
+          {/* Score display */}
+          <div className="score-display">
+            <div className="score-box">
+              <div className="score-label text-black font-bold">Revolutionaries</div>
+              <div className="score-value text-black">{whiteScore}</div>
+            </div>
+            <div className="score-box bg-gray-800 px-2 rounded">
+              <div className="score-label text-white font-bold">Royalists</div>
+              <div className="score-value text-white">{blackScore}</div>
+            </div>
           </div>
-          <div className="score-box">
-            <div className="score-label text-white bg-gray-800 px-2 rounded font-bold">Royalists</div>
-            <div className="score-value text-white bg-gray-800 px-2 rounded">{blackScore}</div>
-          </div>
-        </div>
         
         {/* Controls */}
         <div className="mt-4 space-y-2">
