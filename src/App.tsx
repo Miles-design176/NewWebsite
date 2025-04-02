@@ -56,7 +56,7 @@ function App() {
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipes/:id" element={<RecipeDetails />} />
         <Route path="/boardgame" element={<BoardGame />} />
-        <Route path="/Prankware" element={<FakeRansomware />} />
+        <Route path="/Funware" element={<FakeRansomware />} />
       </Routes>
     </Router>
   );
