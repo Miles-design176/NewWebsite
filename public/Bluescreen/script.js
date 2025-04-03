@@ -23,52 +23,6 @@ document.addEventListener("mousemove", (event) => {
     fakeCursor.style.top = `${newY}px`;
 });
 
-// Disable Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        event.preventDefault(); // Prevent default Escape action
-    }
-});
-
-// Disable F11 key (fullscreen)
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'F11') {
-        event.preventDefault(); // Prevent default F11 action (fullscreen toggle)
-    }
-});
-
-// Disable Ctrl + R (refresh)
-document.addEventListener('keydown', function(event) {
-    if (event.ctrlKey && event.key === 'r') {
-        event.preventDefault(); // Prevent refresh
-    }
-});
-
-// Custom weird key sequence for fullscreen (Ctrl + Shift + F)
-let keySequence = [];
-const sequence = ['Control', 'Shift', 'F']; // Define the weird key sequence (Ctrl + Shift + F)
-
-document.addEventListener('keydown', function(event) {
-    keySequence.push(event.key);
-
-    // Check if the sequence matches
-    if (keySequence.slice(-sequence.length).join() === sequence.join()) {
-        // If sequence matches, toggle fullscreen
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-        } else {
-            document.exitFullscreen();
-        }
-        keySequence = []; // Reset the sequence
-    }
-
-    // Limit sequence length to avoid infinite array growth
-    if (keySequence.length > sequence.length) {
-        keySequence.shift(); // Keep only the last few keys in the sequence
-    }
-});
-
-
 function process() {
   if (!stuck) {
     percentage += parseInt(Math.random() * 3); // Slower increase
