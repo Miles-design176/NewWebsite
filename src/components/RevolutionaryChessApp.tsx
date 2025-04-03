@@ -56,21 +56,21 @@ const revolutionaryFigures: RevolutionaryFigure[] = [
     id: 'danton',
     name: 'Georges Danton',
     role: 'Founder of the Cordeliers Club',
-    description: 'A leading figure in the early stages of the Revolution, Danton was known for his powerful oratory skills and played a pivotal role in the overthrow of the monarchy.',
+    description: 'A leading figure in the early stages of the Revolution, Danton was known for his powerful public speaking skills and played a vital role in the overthrow of the monarchy.',
     side: 'revolutionary'
   },
   {
     id: 'marat',
     name: 'Jean-Paul Marat',
     role: 'Radical Journalist',
-    description: 'Marat published "L\'Ami du peuple" (Friend of the People), an influential radical newspaper that called for violence against counter-revolutionaries. He was assassinated in his bathtub by Charlotte Corday.',
+    description: 'Marat published L\'Ami du peuple (Friend of the People), an influential radical newspaper that called for violence against counter-revolutionaries. He was assassinated in his bathtub by Charlotte Corday.',
     side: 'revolutionary'
   },
   {
     id: 'saint-just',
     name: 'Louis Antoine de Saint-Just',
     role: 'Committee of Public Safety Member',
-    description: 'Known as the "Angel of Death," Saint-Just was one of Robespierre\'s closest allies and a fierce advocate of the Terror, eventually sharing Robespierre\'s fate at the guillotine.',
+    description: 'Known as the "Angel of Death," Saint-Just was one of Robespierre\'s closest allies and a determined supporter of the Terror, eventually sharing Robespierre\'s fate at the guillotine.',
     side: 'revolutionary'
   },
   {
@@ -91,7 +91,7 @@ const revolutionaryFigures: RevolutionaryFigure[] = [
     id: 'sieyes',
     name: 'Emmanuel Joseph Sieyès',
     role: 'Political Theorist',
-    description: 'Author of "What is the Third Estate?", a pamphlet that articulated the grievances of the common people against the privileged orders, laying the groundwork for the Revolution.',
+    description: 'Author of What is the Third Estate?, a pamphlet that stated the complaints of the common people against the privileged orders, laying the groundwork for the Revolution.',
     side: 'revolutionary'
   },
   {
@@ -173,14 +173,14 @@ const royalistFigures: RevolutionaryFigure[] = [
     id: 'marie-antoinette',
     name: 'Marie Antoinette',
     role: 'Queen of France',
-    description: 'The Austrian-born Queen of France who became a symbol of the perceived excesses of the monarchy. Despite her famous statement "Let them eat cake" being apocryphal, she was deeply unpopular and was guillotined in 1793.',
+    description: 'The Austrian-born Queen of France who became a symbol of the perceived excesses of the monarchy. Despite her famous statement "Let them eat cake" being questionable, she was deeply unpopular and was guillotined in 1793.',
     side: 'royalist'
   },
   {
     id: 'artois',
     name: 'Count of Artois',
     role: 'King\'s Brother',
-    description: 'The youngest brother of Louis XVI who opposed reform and was one of the first to emigrate during the Revolution. He later became King Charles X during the Bourbon Restoration.',
+    description: 'The youngest brother of Louis XVI who opposed change and was one of the first to emigrate during the Revolution. He later became King Charles X during the Bourbon Restoration.',
     side: 'royalist'
   },
   {
@@ -194,7 +194,7 @@ const royalistFigures: RevolutionaryFigure[] = [
     id: 'conde',
     name: 'Prince of Condé',
     role: 'Counter-Revolutionary Military Leader',
-    description: 'A member of the royal family who formed the Army of Condé, a counter-revolutionary force of émigrés that fought against the revolutionary armies.',
+    description: 'A member of the royal family who formed the Army of Condé, a counter-revolutionary force of immigrants that fought against the revolutionary armies.',
     side: 'royalist'
   },
   {
@@ -244,7 +244,7 @@ const royalistFigures: RevolutionaryFigure[] = [
     id: 'noble-4',
     name: 'Aristocrat',
     role: 'Member of the Nobility',
-    description: 'Some nobles initially supported the Revolution but became disillusioned as it grew more radical and threatened their status and property.',
+    description: 'Some nobles initially supported the Revolution but became let down as it grew more radical and threatened their status and property.',
     side: 'royalist'
   },
   {
@@ -272,7 +272,7 @@ const royalistFigures: RevolutionaryFigure[] = [
     id: 'noble-8',
     name: 'Aristocrat',
     role: 'Member of the Nobility',
-    description: 'The Revolution abolished titles of nobility and feudal privileges, fundamentally challenging the social order that had defined France for centuries.',
+    description: 'The Revolution titles of nobility and feudal privileges, fundamentally challenging the social order that had defined France for centuries.',
     side: 'royalist'
   }
 ];
