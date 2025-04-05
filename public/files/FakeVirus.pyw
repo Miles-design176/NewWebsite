@@ -59,7 +59,7 @@ def update_progress():
         root.after(200, update_progress)
     else:
         text_box.insert(tk.END, "\n[ DELETING SYSTEM FILES... ]\n")
-        root.after(1000, trigger_blackout)  # Trigger blackout after the message
+        root.after(1000, trigger_blackout)
 
 def cycle_hacker_type():
     if progress < 100:
@@ -71,7 +71,6 @@ def shutdown_computer():
         subprocess.run("shutdown /s /t 0", shell=True)
     except Exception as e:
         messagebox.showerror("Error", f"Could not shut down: {e}")
-
 
 def generate_fake_data():
     if progress < 100:
@@ -152,9 +151,7 @@ def show_fake_recovery():
     recovery.attributes("-fullscreen", True)
     recovery.overrideredirect(True)
     recovery.configure(bg="black")
-
-    # BIOS-style cursor
-    recovery.config(cursor="none")  # Hides cursor during recovery
+    recovery.config(cursor="none")
 
     label = tk.Label(recovery, text="Recovery Options\n\nWould you like to recover your PC?", font=("Courier", 20), fg="white", bg="black")
     label.pack(pady=100)
@@ -179,44 +176,36 @@ def start_recovery(win):
     def slowly_fill_bar(i=0):
         if i <= 600:
             canvas.coords(bar, 0, 0, i, 30)
-            recovering.after(500, slowly_fill_bar, i + 2)  # Very slow fill
+            recovering.after(500, slowly_fill_bar, i + 2)
         else:
-            # Loop indefinitely
             recovering.after(5000, lambda: slowly_fill_bar(0))
 
     slowly_fill_bar()
 
 def trigger_blackout():
-    # Hide all widgets and the mouse cursor to prepare for blackout
     for widget in root.winfo_children():
         widget.pack_forget()
-
-    # Remove hacker tag explicitly
     hacker_type_label.place_forget()
-
     root.configure(bg="black")
-    root.config(cursor="none")  # Hide the cursor during blackout
+    root.config(cursor="none")
+    root.after(3000, show_fake_repair)
 
-    root.after(3000, show_fake_repair)  # Show recovery screen after 3 seconds blackout
-
-# --- Event Blockers ---
+# --- Key Events ---
 def on_key_press(event):
-    if not is_typing:
+    global is_typing
+    if event.char.lower() == 'l':
+        messagebox.showinfo("Security Breach", "Breach terminated!")
+        root.destroy()
+    elif not is_typing:
         text_box.insert(tk.END, event.char)
 
 def on_closing():
     pass
 
-def on_ctrl_shift_escape(event):
-    if event.state == 12 and event.keysym == 'Escape':  # Ctrl+Shift+Esc
-        messagebox.showinfo("Security Breach", "Breach terminated!")
-        root.quit()
-
+# --- GO! ---
 root.protocol("WM_DELETE_WINDOW", on_closing)
 root.bind("<Key>", on_key_press)
-root.bind("<KeyPress>", on_ctrl_shift_escape)
 
-# --- GO! ---
 update_progress()
 generate_fake_data()
 cycle_hacker_type()
