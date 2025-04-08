@@ -75,13 +75,31 @@ const DownloadsPage: React.FC = () => {
       icon: <img src="/images/goose.png" alt="EvilGoose Icon" className="h-12 w-12" />,
     },
     {
+      title: "Rick Roll",
+      description: "A .exe file that Rick rolls hiddenly",
+      author: "Milis",
+      fileName: "RickRoll.exe",
+      fileSize: "43.4 MB",
+      fileType: ".exe File",
+      icon: <img src="/images/roll.png" alt="RIck Roll" className="h-12 w-12" />,
+    },
+    {
+      title: "System 32 Deletion Prank",
+      description: "Makes you thing you have deleted System 32",
+      author: "Milis",
+      fileName: "System32DeletionPrank.zip",
+      fileSize: "1,247 B",
+      fileType: "ZIP File",
+      icon: <img src="/images/folder.png" alt="System 32 deletion prank" className="h-12 w-12" />,
+    },
+    {
       title: "1.8.9 Texture Pack",
       description: "Complete guide and reference for all features",
       author: "Technolot",
       fileName: "! §4§l§oQwesta§r §7[§8§o16x§r§7]§8.zip",
       fileSize: "17.6 MB",
       fileType: "ZIP File",
-      icon: <img src="/images/texturepack.png" alt="EvilGoose Icon" className="h-12 w-12" />,
+      icon: <img src="/images/texturepack.png" alt="1.8.9 Texture" className="h-12 w-12" />,
     }
   ];
 
